@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Hobo";
+    src: url("resources/fonts/HoboBT.otf") format("opentype");
+    
+}
+
+.fonte-morcegao {
+    -fx-font-family: "Hobo";
+}
+
+/* Sim, css só para importar uma fonte */
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="860.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaNovoFuncionarioController">
+   <children>
+      <ImageView fitHeight="129.0" fitWidth="174.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Logo%20-%20Laranja.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="229.0" layoutY="14.0" prefHeight="99.0" prefWidth="404.0" styleClass="fonte-morcegao" stylesheets="@estilo.css" text="MORCEGÃO" textFill="WHITE">
+         <font>
+            <Font size="85.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="331.0" layoutY="114.0" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Loja online" textFill="WHITE">
+         <font>
+            <Font name="Corbel Bold" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="129.0" fitWidth="174.0" layoutX="692.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Logo%20-%20Laranja.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="169.0" prefHeight="511.0" prefWidth="860.0" style="-fx-background-color: f68e1f;">
+         <children>
+            <AnchorPane layoutX="50.0" layoutY="59.0" prefHeight="399.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+               <children>
+                  <Label layoutX="33.0" layoutY="71.0" prefHeight="36.0" prefWidth="225.0" text="Nome Completo:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfNome" layoutX="33.0" layoutY="107.0" prefHeight="36.0" prefWidth="325.0" />
+                  <Label layoutX="33.0" layoutY="169.0" prefHeight="36.0" prefWidth="225.0" text="Senha:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfSenha" layoutX="33.0" layoutY="205.0" prefHeight="36.0" prefWidth="325.0" />
+                  <TextField fx:id="tfNome1" layoutX="407.0" layoutY="108.0" prefHeight="36.0" prefWidth="325.0" />
+                  <Label fx:id="tfCPF" layoutX="407.0" layoutY="72.0" prefHeight="36.0" prefWidth="225.0" text="CPF:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="407.0" layoutY="170.0" prefHeight="36.0" prefWidth="225.0" text="Data de nascimento:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <DatePicker layoutX="407.0" layoutY="206.0" prefHeight="36.0" prefWidth="325.0" />
+                  <Button fx:id="btnLogin" layoutX="316.0" layoutY="314.0" mnemonicParsing="false" onAction="#btnLoginOnClick" prefHeight="36.0" prefWidth="130.0" style="-fx-background-color: f68e1f;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="152.0" layoutY="80.0" prefHeight="16.0" prefWidth="12.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="178.0" prefHeight="16.0" prefWidth="12.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="442.0" layoutY="78.0" prefHeight="16.0" prefWidth="12.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="553.0" layoutY="177.0" prefHeight="16.0" prefWidth="12.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" layoutX="275.0" layoutY="36.0" prefHeight="46.0" prefWidth="312.0" style="-fx-background-color: black; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Cadastro - Novo Funcionário" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="borda-redonda" />
+                  <String fx:value="fonte-2morcegao" />
+               </styleClass>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
