@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Hobo";
-    src: url("resources/fonts/HoboBT.otf") format("opentype");
+    src: url("../resources/fonts/HoboBT.otf") format("opentype");
     
 }
 
@@ -8,5 +8,10 @@
     -fx-font-family: "Hobo";
 }
 
-/* Sim, css só para importar uma fonte */
+.botao{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-border-radius: 25px;
+    -fx-cursor: hand;
+}
 

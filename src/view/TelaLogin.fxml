@@ -23,7 +23,7 @@
             <Font size="85.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="329.0" layoutY="114.0" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Loja online" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="227.0" layoutY="114.0" prefHeight="36.0" prefWidth="404.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Loja online" textFill="WHITE">
          <font>
             <Font name="Corbel Bold" size="25.0" />
          </font>
