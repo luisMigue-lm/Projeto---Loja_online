@@ -11,42 +11,42 @@ public class TelaFuncionarioController {
     private BorderPane bPane;
 
     @FXML
-    private Button btCadastrar;
+    private Button btnCadastrar;
 
     @FXML
-    private Button btDeletar;
+    private Button btnDeletar;
 
     @FXML
-    private Button btOpcoes;
+    private Button btnOpcoes;
 
     @FXML
-    private Button btPesquisar;
+    private Button btnPesquisar;
 
     @FXML
-    private Button btVoltar;
+    private Button btnVoltar;
 
     @FXML
-    void btCadastrarClick(ActionEvent event) {
+    void btnCadastrarOnClick(ActionEvent event) {
 
     }
 
     @FXML
-    void btDeletarClick(ActionEvent event) {
+    void btnDeletarOnClick(ActionEvent event) {
 
     }
 
     @FXML
-    void btOpcoesClick(ActionEvent event) {
+    void btnOpcoesOnClick(ActionEvent event) {
 
     }
 
     @FXML
-    void btPesquisarClick(ActionEvent event) {
+    void btnPesquisarOnClick(ActionEvent event) {
 
     }
 
     @FXML
-    void btVoltarClick(ActionEvent event) {
+    void btnVoltarOnClick(ActionEvent event) {
 
     }
 

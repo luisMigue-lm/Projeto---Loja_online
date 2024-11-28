@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="129.0" fitWidth="174.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Logo%20-%20Laranja.png" />
+            <Image url="@../resources/imgs/Logo%20-%20Laranja.png" />
          </image>
       </ImageView>
       <Label layoutX="229.0" layoutY="14.0" prefHeight="99.0" prefWidth="404.0" styleClass="fonte-morcegao" stylesheets="@estilo.css" text="MORCEGÃO" textFill="WHITE">
@@ -30,14 +30,14 @@
       </Label>
       <ImageView fitHeight="129.0" fitWidth="174.0" layoutX="694.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Logo%20-%20Laranja.png" />
+            <Image url="@../resources/imgs/Logo%20-%20Laranja.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="-5.0" layoutY="165.0" prefHeight="511.0" prefWidth="867.0" style="-fx-background-color: f68e1f;">
          <children>
             <AnchorPane layoutX="193.0" layoutY="70.0" prefHeight="374.0" prefWidth="482.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
                <children>
-                  <TextField fx:id="tfCPF" layoutX="27.0" layoutY="88.0" prefHeight="36.0" prefWidth="425.0" />
+                  <TextField fx:id="tfCPF" layoutX="27.0" layoutY="88.0" prefHeight="36.0" prefWidth="425.0" promptText="xxxxxxxxxxx" />
                   <Label layoutX="27.0" layoutY="52.0" prefHeight="36.0" prefWidth="225.0" text="CPF:">
                      <font>
                         <Font name="Arial" size="16.0" />
@@ -48,7 +48,7 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnLogin" layoutX="175.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnLoginOnClick" prefHeight="36.0" prefWidth="130.0" style="-fx-background-color: f68e1f;" text="Entrar" textFill="WHITE">
+                  <Button fx:id="btnLogin" layoutX="176.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnLoginOnClick" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: f68e1f;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -56,7 +56,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <PasswordField fx:id="pfSenha" layoutX="27.0" layoutY="187.0" prefHeight="36.0" prefWidth="425.0" />
+                  <PasswordField fx:id="pfSenha" layoutX="27.0" layoutY="187.0" prefHeight="36.0" prefWidth="425.0" text=". . . . . . . " />
                 <Button fx:id="btnCadastro" alignment="TOP_LEFT" layoutX="157.0" layoutY="237.0" mnemonicParsing="false" onAction="#btnCadastroOnClick" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" text="Clique aqui!" textFill="#f68e1f" underline="true" wrapText="true">
                      <font>
                         <Font name="Arial" size="14.0" />
