@@ -13,7 +13,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL url = getClass().getResource("/view/TelaLogin.fxml");
+        URL url = getClass().getResource("/view/TelaPrincipal.fxml");
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("Loja Online - Morcegão");
         primaryStage.setScene(new Scene(root));

@@ -8,16 +8,17 @@ public class Funcionario {
     private int senha;
     private int cpfFuncionario;
     private LocalDate dtNascimento;
+    private String emailFuncionario;
 
-    public Funcionario(int idFuncionario, String nomeFuncionario, int senha, int cpfFuncionario,
-            LocalDate dtNascimento) {
+    public Funcionario(int idFuncionario, String nomeFuncionario, int senha, int cpfFuncionario, LocalDate dtNascimento, String emailFuncionario) {
         this.idFuncionario = idFuncionario;
         this.nomeFuncionario = nomeFuncionario;
         this.senha = senha;
         this.cpfFuncionario = cpfFuncionario;
         this.dtNascimento = dtNascimento;
+        this.emailFuncionario = emailFuncionario;
     }
-    
+
     public Funcionario() {
     }
     
@@ -36,6 +37,7 @@ public class Funcionario {
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
+
     public int getSenha() {
         return senha;
     }
@@ -60,4 +62,14 @@ public class Funcionario {
         this.dtNascimento = dtNascimento;
     }
 
+    public String getEmailFuncionario() {
+        return emailFuncionario;
+    }
+
+    public void setEmailFuncionario(String emailFuncionario) {
+        this.emailFuncionario = emailFuncionario;
+    }
+
 }
+
+ 
