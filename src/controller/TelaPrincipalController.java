@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class TelaPrincipalController {
@@ -27,12 +28,16 @@ public class TelaPrincipalController {
 
     @FXML
     private Button btnSair;
-@FXML
+
+    @FXML
+    private Label tfNomeFuncionario;
+
+    @FXML
     private void fecharTela() {
         Stage primaryStage = (Stage) btnSair.getScene().getWindow();
         primaryStage.close();
     }
-
+   
     @FXML
     void btnClientesOnClick(ActionEvent event) throws IOException{
         URL url = getClass().getResource("/view/TelaCliente.fxml");

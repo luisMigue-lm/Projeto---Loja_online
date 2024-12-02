@@ -32,7 +32,7 @@
                         <Font size="85.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="60.0" layoutY="94.0" prefHeight="36.0" prefWidth="404.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Loja online" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="60.0" layoutY="94.0" prefHeight="36.0" prefWidth="404.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" stylesheets="@estilo.css" text="Supermercado" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>

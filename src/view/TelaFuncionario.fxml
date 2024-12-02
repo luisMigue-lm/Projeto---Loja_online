@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -32,7 +33,7 @@
                         <Font size="120.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="230.0" layoutY="134.0" prefHeight="45.0" prefWidth="560.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" text="Loja online" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="230.0" layoutY="134.0" prefHeight="45.0" prefWidth="560.0" style="-fx-background-color: f68e1f; -fx-background-radius: 25;" text="Supermercado" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="35.0" />
                      </font>
@@ -124,38 +125,50 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="apCadastro" layoutX="15.0" layoutY="26.0" prefHeight="534.0" prefWidth="971.0" visible="false">
+                  <AnchorPane fx:id="apCadastro" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
                      <children>
                         <Label layoutX="69.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="Nome:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfNome" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Marcos Peçanha" stylesheets="@estilo.css" />
-                        <Label layoutX="69.0" layoutY="186.0" prefHeight="41.0" prefWidth="300.0" text="Telefone:">
+                        <TextField fx:id="tfNome" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Marcos Peçanha" stylesheets="@estilo.css">
                            <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfCPF" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="xxxxxxxxx" styleClass="text-field" stylesheets="@estilo.css" />
+                              <Font name="Arial" size="16.0" />
+                           </font></TextField>
                         <Label layoutX="513.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="CPF:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfTelefone" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="391.0" promptText="(xx)xxxxxxxx" stylesheets="@estilo.css" />
+                        <TextField fx:id="tfCPF" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="xxxxxxxxx" styleClass="text-field" stylesheets="@estilo.css">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font></TextField>
+                        <Label layoutX="69.0" layoutY="186.0" prefHeight="41.0" prefWidth="300.0" text="Data de nascimento:">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dpDtNascimento" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="17/10/1980" />
                         <Label layoutX="513.0" layoutY="186.0" prefHeight="41.0" prefWidth="300.0" text="Senha:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfSenha" layoutX="513.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="12345678" stylesheets="@estilo.css" />
-                        <Label layoutX="69.0" layoutY="297.0" prefHeight="41.0" prefWidth="300.0" text="Endereço:">
+                        <TextField fx:id="tfSenha" layoutX="513.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="12345678" stylesheets="@estilo.css">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font></TextField>
+                        <Label layoutX="69.0" layoutY="297.0" prefHeight="41.0" prefWidth="300.0" text="Email:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfEndereco" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="831.0" promptText="R. Av. Al. Pç." stylesheets="@estilo.css" />
+                        <TextField fx:id="tfEmail" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="830.0" promptText="jose.morcegao@gmail.com" stylesheets="@estilo.css">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
                         <Button fx:id="btnCadastrarCliente" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarClienteOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Cadastrar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
@@ -166,18 +179,18 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="apPesquisa" layoutX="18.0" layoutY="26.0" prefHeight="534.0" prefWidth="970.0" visible="false">
+                  <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
                      <children>
                         <Label layoutX="75.0" layoutY="35.0" prefHeight="41.0" prefWidth="327.0" text="Digite um nome para filtrar a pesquisa:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="75.0" layoutY="76.0" prefHeight="40.0" prefWidth="645.0" stylesheets="@estilo.css">
+                        <TextField fx:id="tfPesquisa" layoutX="75.0" layoutY="76.0" prefHeight="40.0" prefWidth="645.0" stylesheets="@estilo.css">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
-                        <Button fx:id="btnPesquisarClientes" alignment="CENTER" layoutX="740.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnPesquisarClientes" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Pesquisar" textFill="WHITE">
+                        <Button fx:id="btnPesquisarFuncionario" alignment="CENTER" layoutX="740.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnPesquisarFuncionariosOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Pesquisar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -224,7 +237,7 @@
    <right>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="230.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnDeletar" alignment="CENTER" mnemonicParsing="false" onAction="#btnDeletarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Deletar">
+            <Button fx:id="btnDeletar" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#btnDeletarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Deletar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

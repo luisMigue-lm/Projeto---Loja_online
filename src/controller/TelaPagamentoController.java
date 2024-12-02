@@ -9,15 +9,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class TelaPagamentoController {
 
     @FXML
+    private AnchorPane apCadastro;
+
+    @FXML
+    private AnchorPane apPesquisa;
+
+    @FXML
+    private BorderPane bPane;
+
+    @FXML
     private Button btnCadastrar;
 
     @FXML
+    private Button btnCadastrarCliente;
+
+    @FXML
     private Button btnDeletar;
+
+    @FXML
+    private Button btnEditar;
+
+    @FXML
+    private Button btnLimpar;
 
     @FXML
     private Button btnOpcoes;
@@ -26,12 +49,56 @@ public class TelaPagamentoController {
     private Button btnPesquisar;
 
     @FXML
+    private Button btnPesquisarPagamentos;
+
+    @FXML
     private Button btnVoltar;
+
+    @FXML
+    private TableColumn<?, ?> colData;
+
+    @FXML
+    private TableColumn<?, ?> colDescricao;
+
+    @FXML
+    private TableColumn<?, ?> colFormaPagamento;
+
+    @FXML
+    private TableColumn<?, ?> colIdPagamento;
+
+    @FXML
+    private TableColumn<?, ?> colQuantdParcelas;
+
+    @FXML
+    private TableColumn<?, ?> colTaxaJuros;
+
+    @FXML
+    private DatePicker dpDataPagamento;
+
+    @FXML
+    private TextField tfDescricao;
+
+    @FXML
+    private TextField tfFormaPagamento;
+
+    @FXML
+    private TextField tfPesquisa;
+
+    @FXML
+    private TextField tfQuantdParcelas;
+
+    @FXML
+    private TextField tfTaxaJuros;
 
     @FXML
     private void fecharTela() {
         Stage primaryStage = (Stage) btnVoltar.getScene().getWindow();
         primaryStage.close();
+    }
+    
+    @FXML
+    void btnCadastrarClienteOnClick(ActionEvent event) {
+
     }
 
     @FXML
@@ -41,6 +108,16 @@ public class TelaPagamentoController {
 
     @FXML
     void btnDeletarOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditarOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnLimparOnclick(ActionEvent event) {
 
     }
 
@@ -55,6 +132,11 @@ public class TelaPagamentoController {
     }
 
     @FXML
+    void btnPesquisarPagamentosOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnVoltarOnClick(ActionEvent event) throws IOException{
         URL url = getClass().getResource("/view/TelaPrincipal.fxml");
         Parent root = FXMLLoader.load(url);
@@ -63,7 +145,6 @@ public class TelaPagamentoController {
         stgTelaPrincipal.setTitle("Tela Principal");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
-        
         
         fecharTela();
     }

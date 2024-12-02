@@ -9,24 +9,85 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class TelaClienteController {
 
     @FXML
-    private Button btPesquisar;
+    private AnchorPane apCadastro;
+
+    @FXML
+    private AnchorPane apPesquisa;
+
+    @FXML
+    private BorderPane bPane;
 
     @FXML
     private Button btnCadastrar;
 
     @FXML
+    private Button btnCadastrarCliente;
+
+    @FXML
     private Button btnDeletar;
+
+    @FXML
+    private Button btnEditar;
+
+    @FXML
+    private Button btnLimpar;
 
     @FXML
     private Button btnOpcoes;
 
     @FXML
+    private Button btnPesquisar;
+
+    @FXML
+    private Button btnPesquisarClientes;
+
+    @FXML
     private Button btnVoltar;
+
+    @FXML
+    private TableColumn<?, ?> colCPF;
+
+    @FXML
+    private TableColumn<?, ?> colEndereco;
+
+    @FXML
+    private TableColumn<?, ?> colIdCliente;
+
+    @FXML
+    private TableColumn<?, ?> colNome;
+
+    @FXML
+    private TableColumn<?, ?> colSenha;
+
+    @FXML
+    private TableColumn<?, ?> colTelefone;
+
+    @FXML
+    private TextField tfCPF;
+
+    @FXML
+    private TextField tfEndereco;
+
+    @FXML
+    private TextField tfNome;
+
+    @FXML
+    private TextField tfPesquisa;
+
+    @FXML
+    private TextField tfSenha;
+
+    @FXML
+    private TextField tfTelefone;
 
     @FXML
     private void fecharTela() {
@@ -35,8 +96,13 @@ public class TelaClienteController {
     }
 
     @FXML
+    void btnCadastrarClienteOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnCadastrarOnClick(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -45,7 +111,22 @@ public class TelaClienteController {
     }
 
     @FXML
+    void btnEditarOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnLimparOnclick(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnOpcoesOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnPesquisarClientesOnClick(ActionEvent event) {
 
     }
 
@@ -63,8 +144,7 @@ public class TelaClienteController {
         stgTelaPrincipal.setTitle("Tela Principal");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
-        
-        
+
         fecharTela();
     }
 
