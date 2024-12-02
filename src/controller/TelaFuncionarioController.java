@@ -1,9 +1,16 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class TelaFuncionarioController {
 
@@ -26,6 +33,12 @@ public class TelaFuncionarioController {
     private Button btnVoltar;
 
     @FXML
+    private void fecharTela() {
+        Stage primaryStage = (Stage) btnVoltar.getScene().getWindow();
+        primaryStage.close();
+    }
+
+    @FXML
     void btnCadastrarOnClick(ActionEvent event) {
 
     }
@@ -46,8 +59,17 @@ public class TelaFuncionarioController {
     }
 
     @FXML
-    void btnVoltarOnClick(ActionEvent event) {
+    void btnVoltarOnClick(ActionEvent event) throws IOException{
+        URL url = getClass().getResource("/view/TelaLogin.fxml");
+        Parent root = FXMLLoader.load(url);
 
+        Stage stgTelaPrincipal = new Stage();
+        stgTelaPrincipal.setTitle("Tela Login");
+        stgTelaPrincipal.setScene(new Scene(root));
+        stgTelaPrincipal.show();
+        
+        
+        fecharTela();
     }
 
 }

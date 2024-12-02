@@ -65,7 +65,7 @@
                </padding>
             </Button>
             <Pane prefHeight="35.0" prefWidth="200.0" />
-            <Button fx:id="btPesquisar" alignment="CENTER" mnemonicParsing="false" onAction="#btnPesquisarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Pesquisar">
+            <Button fx:id="btnPesquisar" alignment="CENTER" mnemonicParsing="false" onAction="#btnPesquisarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Pesquisar">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -127,7 +127,7 @@
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="200.0" prefWidth="20.0" />
-            <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" styleClass="botao" stylesheets="@estilo.css" text="Voltar">
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarOnClick" prefHeight="44.0" prefWidth="105.0" styleClass="botao" stylesheets="@estilo.css" text="Voltar">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>

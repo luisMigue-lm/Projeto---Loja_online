@@ -1,8 +1,15 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class TelaClienteController {
 
@@ -19,8 +26,17 @@ public class TelaClienteController {
     private Button btnOpcoes;
 
     @FXML
-    void btnCadastrarOnClick(ActionEvent event) {
+    private Button btnVoltar;
 
+    @FXML
+    private void fecharTela() {
+        Stage primaryStage = (Stage) btnVoltar.getScene().getWindow();
+        primaryStage.close();
+    }
+
+    @FXML
+    void btnCadastrarOnClick(ActionEvent event) {
+        
     }
 
     @FXML
@@ -36,6 +52,20 @@ public class TelaClienteController {
     @FXML
     void btnPesquisarOnClick(ActionEvent event) {
 
+    }
+
+    @FXML
+    void btnVoltarOnClick(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("/view/TelaPrincipal.fxml");
+        Parent root = FXMLLoader.load(url);
+
+        Stage stgTelaPrincipal = new Stage();
+        stgTelaPrincipal.setTitle("Tela Principal");
+        stgTelaPrincipal.setScene(new Scene(root));
+        stgTelaPrincipal.show();
+        
+        
+        fecharTela();
     }
 
 }

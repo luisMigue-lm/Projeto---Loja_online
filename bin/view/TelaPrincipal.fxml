@@ -61,6 +61,24 @@
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="200.0" prefWidth="20.0" />
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSairOnClick" prefHeight="44.0" prefWidth="105.0" styleClass="botao" stylesheets="@estilo.css" text="Sair">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/imgs/Sair.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
+               </padding>
+            </Button>
          </children>
       </HBox>
    </bottom>

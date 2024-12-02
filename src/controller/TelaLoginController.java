@@ -1,10 +1,17 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class TelaLoginController {
 
@@ -21,13 +28,35 @@ public class TelaLoginController {
     private TextField tfCPF;
 
     @FXML
-    void btnCadastroOnClick(ActionEvent event) {
-
+    private void fecharTela() {
+        Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
+        primaryStage.close();
     }
 
     @FXML
-    void btnLoginOnClick(ActionEvent event) {
+    void btnCadastroOnClick(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("/view/TelaFuncionario.fxml");
+        Parent root = FXMLLoader.load(url);
 
+        Stage stgTelaPrincipal = new Stage();
+        stgTelaPrincipal.setTitle("Tela Funcionário");
+        stgTelaPrincipal.setScene(new Scene(root));
+        stgTelaPrincipal.show();
+
+        fecharTela();
+    }
+
+    @FXML
+    void btnLoginOnClick(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("/view/TelaPrincipal.fxml");
+        Parent root = FXMLLoader.load(url);
+
+        Stage stgTelaPrincipal = new Stage();
+        stgTelaPrincipal.setTitle("Tela Principal");
+        stgTelaPrincipal.setScene(new Scene(root));
+        stgTelaPrincipal.show();
+
+        fecharTela();
     }
 
 }

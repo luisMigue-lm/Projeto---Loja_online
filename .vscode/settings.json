@@ -5,14 +5,14 @@
 	"java.project.outputPath": "bin",
 	"java.project.referencedLibraries": [
 		"lib/**/*.jar",
-		"c:/JavaFX/lib/javafx.base.jar",
-		"c:/JavaFX/lib/javafx.controls.jar",
-		"c:/JavaFX/lib/javafx.fxml.jar",
-		"c:/JavaFX/lib/javafx.graphics.jar",
-		"c:/JavaFX/lib/javafx.media.jar",
-		"c:/JavaFX/lib/javafx.swing.jar",
-		"c:/JavaFX/lib/javafx.web.jar",
-		"c:/JavaFX/lib/javafx-swt.ja",
-		"c:\\JavaFX\\mysql-connector-j-9.1.0.jar"
+		"d:/JavaFX/lib/javafx.base.jar",
+		"d:/JavaFX/lib/javafx.controls.jar",
+		"d:/JavaFX/lib/javafx.fxml.jar",
+		"d:/JavaFX/lib/javafx.graphics.jar",
+		"d:/JavaFX/lib/javafx.media.jar",
+		"d:/JavaFX/lib/javafx.swing.jar",
+		"d:/JavaFX/lib/javafx.web.jar",
+		"d:/JavaFX/lib/javafx-swt.ja",
+		"d:\\JavaFX\\mysql-connector-j-9.1.0.jar"
 	]
 }
