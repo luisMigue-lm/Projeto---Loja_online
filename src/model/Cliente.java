@@ -3,21 +3,21 @@ package model;
 public class Cliente {
     private int idCliente;
     private String nomeCliente;
-    private String senha;
+    private String genero;
     private String cpfCliente;
     private String enderecoClietne;
     private String telefoneCliente;
 
-    public Cliente(int idCliente, String nomeCliente, String senha, String cpfCliente, String enderecoClietne,
-    String telefoneCliente) {
+    public Cliente(int idCliente, String nomeCliente, String genero, String cpfCliente, String enderecoClietne,
+            String telefoneCliente) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
-        this.senha = senha;
+        this.genero = genero;
         this.cpfCliente = cpfCliente;
         this.enderecoClietne = enderecoClietne;
         this.telefoneCliente = telefoneCliente;
     }
-    
+
     public Cliente() {
     }
 
@@ -37,18 +37,18 @@ public class Cliente {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getCpfCliente() {
         return cpfCliente;
     }
-
+    
     public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
@@ -68,6 +68,8 @@ public class Cliente {
     public void setTelefoneCliente(String telefoneCliente) {
         this.telefoneCliente = telefoneCliente;
     }
+
+    
 
 
 }

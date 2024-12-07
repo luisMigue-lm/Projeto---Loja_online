@@ -21,6 +21,7 @@
 .text-field:focused{
     -fx-border-color: #000000; 
     -fx-border-width: 2px;   
+    
 }   
 
 .botao-cadastro-funcionario:focused{

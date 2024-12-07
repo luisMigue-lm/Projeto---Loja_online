@@ -81,30 +81,30 @@ public class TelaFuncionarioController {
 
     @FXML
     private TableColumn<Funcionario, Integer> colSenha;
-
-    ObservableList<Funcionario> obsFunc;
-
+    
     @FXML
     private DatePicker dpDtNascimento;
-
+    
     @FXML
     private TableView<Funcionario> tbvFuncionarios;
-
+    
     @FXML
     private TextField tfCPF;
-
+    
     @FXML
     private TextField tfEmail;
-
+    
     @FXML
     private TextField tfNome;
-
+    
     @FXML
     private TextField tfPesquisa;
-
+    
     @FXML
     private TextField tfSenha;
-
+    
+    ObservableList<Funcionario> obsFunc;
+    
     @FXML
     private void initialize() {
         colIdFuncionario.setCellValueFactory(new PropertyValueFactory<>("idFuncionario"));
@@ -113,7 +113,7 @@ public class TelaFuncionarioController {
         colCPF.setCellValueFactory(new PropertyValueFactory<>("cpfFuncionario"));
         colDtNascmt.setCellValueFactory(new PropertyValueFactory<>("dtNascimento"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("emailFuncionario"));
-
+        
         obsFunc = FXCollections.observableArrayList();
         tbvFuncionarios.setItems(obsFunc);
 
@@ -169,7 +169,7 @@ public class TelaFuncionarioController {
 
     private void preencherDados(Funcionario funcionario) {
         tfNome.setText(funcionario.getNomeFuncionario());
-        tfSenha.setText(String.valueOf(funcionario.getSenha()));
+        tfSenha.setText(funcionario.getSenha());
         tfCPF.setText(funcionario.getCpfFuncionario());
         dpDtNascimento.setValue(funcionario.getDtNascimento());
         tfEmail.setText(funcionario.getEmailFuncionario());
@@ -186,22 +186,22 @@ public class TelaFuncionarioController {
     void btnCadastrarClienteOnClick(ActionEvent event) {
         String nomeFuncionario = tfNome.getText().trim();
         String senha = tfSenha.getText().trim();
-        String cpfFuncionario = tfCPF.getText();
+        String cpfFuncionario = tfCPF.getText().trim();
         LocalDate dtNascimento = dpDtNascimento.getValue();
-        String emailFuncionario = tfEmail.getText();
+        String emailFuncionario = tfEmail.getText().trim();
 
         Funcionario Funcionario = new Funcionario(1, nomeFuncionario, senha, cpfFuncionario, dtNascimento,
                 emailFuncionario);
 
         if (FuncionarioDao.cadastrar(Funcionario)) {
             JOptionPane.showMessageDialog(null, "Seus dados foram cadastrados com sucesso!", "Sucesso!", 1);
+            limparCampos();
 
         } else {
             JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR!", "ERRO!", 0);
 
         }
 
-        limparCampos();
     }
 
     @FXML
@@ -227,11 +227,11 @@ public class TelaFuncionarioController {
                     obsFunc.remove(funcionarioSelecionado);
                     tbvFuncionarios.refresh();
 
-                    JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!", "Sucesso",
+                    JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!", "Sucesso!",
                             JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o funcionário.", "Erro",
+                    JOptionPane.showMessageDialog(null, "Erro ao excluir o funcionário.", "Erro!",
                             JOptionPane.ERROR_MESSAGE);
 
                 }
@@ -279,15 +279,15 @@ public class TelaFuncionarioController {
     @FXML
     void btnPesquisarFuncionariosOnClick(ActionEvent event) {
         String pesquisa = tfPesquisa.getText().trim();
-        List<Funcionario> funcionariosFiltrados = FuncionarioDao.listar(pesquisa);
+        List<Funcionario> funcionariosCadastrados = FuncionarioDao.listar(pesquisa);
 
         obsFunc.clear();
-        obsFunc.addAll(funcionariosFiltrados);
+        obsFunc.addAll(funcionariosCadastrados);
 
         tbvFuncionarios.refresh();
 
-        if (funcionariosFiltrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        if (funcionariosCadastrados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
         } 
 
     }

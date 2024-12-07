@@ -40,7 +40,7 @@ public class FuncionarioDao {
     }
 
     public static List<Funcionario> listar(String nome){
-        List<Funcionario> listaPorNome = new ArrayList<Funcionario>();
+        List<Funcionario> lista = new ArrayList<Funcionario>();
 
         String sql = "SELECT * FROM funcionario WHERE nomeFuncionario LIKE ?";
 
@@ -60,14 +60,14 @@ public class FuncionarioDao {
                 funcionario.setDtNascimento(rs.getObject("dtNascimento", LocalDate.class));
                 funcionario.setEmailFuncionario(rs.getString("emailFuncionario"));
 
-                listaPorNome.add(funcionario);
+                lista.add(funcionario);
 
             }
 
-            return listaPorNome;
+            return lista;
 
-        } catch (SQLException erro) {
-            System.out.println("ERRO: " + erro.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO AO LISTAR: " + e.getMessage(), "ERRO!", 3);
             return null;
 
         }
@@ -92,14 +92,14 @@ public class FuncionarioDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO INSERIR: " + e.getMessage(), "ERRO", 3);
+            JOptionPane.showMessageDialog(null, "ERRO AO ATUALIZAR: " + e.getMessage(), "ERRO!", 3);
             return false;
 
         }
     }
 
     public static boolean deletar(Funcionario funcionario) {
-        String sql = "DELETE FROM funcionario WHERE idFuncionario = ?";
+        String sql = "DELETE FROM funcionario WHERE idFuncionario = ?"; 
 
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -109,8 +109,9 @@ public class FuncionarioDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO INSERIR: " + e.getMessage(), "ERRO", 3);
+            JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
             return false;
+            
         }
     }
 }
