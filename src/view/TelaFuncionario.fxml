@@ -141,7 +141,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfCPF" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="xxxxxxxxx" styleClass="text-field" stylesheets="@estilo.css">
+                        <TextField fx:id="tfCPF" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="xxx.xxx.xxx-xx" styleClass="text-field" stylesheets="@estilo.css">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
@@ -198,7 +198,7 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="btnEditar" alignment="CENTER" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Editar" textFill="WHITE">
+                        <Button fx:id="btnEditar" alignment="CENTER" disable="true" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Editar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -214,7 +214,7 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <TableView layoutX="5.0" layoutY="127.0" prefHeight="360.0" prefWidth="960.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0">
+                        <TableView fx:id="tbvFuncionarios" layoutX="5.0" layoutY="127.0" prefHeight="360.0" prefWidth="960.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0">
                           <columns>
                             <TableColumn fx:id="colIdFuncionario" prefWidth="75.0" text="Código" />
                             <TableColumn fx:id="colNome" prefWidth="170.0" text="Nome" />

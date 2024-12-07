@@ -66,13 +66,19 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tfCPF" layoutX="29.0" layoutY="92.0" prefHeight="36.0" prefWidth="425.0" promptText="xxxxxxxxxxx" stylesheets="@estilo.css" />
+                  <TextField fx:id="tfCPF" layoutX="29.0" layoutY="92.0" prefHeight="36.0" prefWidth="425.0" promptText="xxx.xxx.xxx-xx" stylesheets="@estilo.css">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font></TextField>
                   <Label layoutX="30.0" layoutY="142.0" prefHeight="36.0" prefWidth="225.0" text="Senha:">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="pfSenha" layoutX="29.0" layoutY="178.0" prefHeight="36.0" prefWidth="425.0" promptText="12345678" stylesheets="@estilo.css" />
+                  <PasswordField fx:id="pfSenha" layoutX="29.0" layoutY="178.0" prefHeight="36.0" prefWidth="425.0" promptText="12345678" stylesheets="@estilo.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
                   <Label layoutX="29.0" layoutY="220.0" prefHeight="36.0" prefWidth="147.0" text="Não possuí cadastro? " textFill="#f68e1f">
                      <font>
                         <Font name="Arial" size="14.0" />

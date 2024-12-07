@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Funcionario {
     private int idFuncionario;
     private String nomeFuncionario;
-    private int senha;
-    private int cpfFuncionario;
+    private String senha;
+    private String cpfFuncionario;
     private LocalDate dtNascimento;
     private String emailFuncionario;
 
-    public Funcionario(int idFuncionario, String nomeFuncionario, int senha, int cpfFuncionario, LocalDate dtNascimento, String emailFuncionario) {
+    public Funcionario(int idFuncionario, String nomeFuncionario, String senha, String cpfFuncionario, LocalDate dtNascimento, String emailFuncionario) {
         this.idFuncionario = idFuncionario;
         this.nomeFuncionario = nomeFuncionario;
         this.senha = senha;
@@ -38,19 +38,19 @@ public class Funcionario {
         this.nomeFuncionario = nomeFuncionario;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public int getCpfFuncionario() {
+    public String getCpfFuncionario() {
         return cpfFuncionario;
     }
 
-    public void setCpfFuncionario(int cpfFuncionario) {
+    public void setCpfFuncionario(String cpfFuncionario) {
         this.cpfFuncionario = cpfFuncionario;
     }
 

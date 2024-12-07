@@ -2,7 +2,6 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -25,8 +24,6 @@ public class ConexaoMySQL {
             ds.setConnectTimeout(2000);
 
             conexao = ds.getConnection();
-
-            JOptionPane.showMessageDialog(null, "CONECTADO AO BANCO MYSQL", "Sucesso!", 0);
 
             return conexao;
 

@@ -5,8 +5,8 @@ USE dbLoja_online;
 CREATE TABLE IF NOT EXISTS funcionario(
 	`idFuncionario` INT(11) NOT NULL AUTO_INCREMENT,
     `nomeFuncionario` VARCHAR(30) NOT NULL,
-    `senha` INT(8) NOT NULL,
-    `cpfFuncionario` INT(11) NOT NULL UNIQUE,
+    `senha` VARCHAR(8) NOT NULL,
+    `cpfFuncionario` VARCHAR(14) NOT NULL UNIQUE,
     `dtNascimento` DATE NOT NULL,
     `emailFuncionario` VARCHAR(100) NOT NULL,
     PRIMARY KEY(`idFuncionario`)
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS funcionario(
 CREATE TABLE IF NOT EXISTS cliente(
 	`idCliente` INT(11) NOT NULL AUTO_INCREMENT,
     `nomeCliente` VARCHAR(30) NOT NULL,
-    `senha` INT(8) NOT NULL,
-    `cpfCliente` INT(11) NOT NULL UNIQUE,
+    `senha` VARCHAR(8) NOT NULL,
+    `cpfCliente` VARCHAR(14) NOT NULL UNIQUE,
     `enderecoCliente` VARCHAR(100) NOT NULL,
     `telefoneCliente` VARCHAR(12) NOT NULL,
     PRIMARY KEY(`idCliente`)
