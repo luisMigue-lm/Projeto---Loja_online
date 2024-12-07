@@ -15,7 +15,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         URL url = getClass().getResource("/view/TelaLogin.fxml");
         Parent root = FXMLLoader.load(url);
-        primaryStage.setTitle("Loja Online - Morcegão");
+        primaryStage.setTitle("Morcegão | Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

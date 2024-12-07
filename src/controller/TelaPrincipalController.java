@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Funcionario;
 
 public class TelaPrincipalController {
 
@@ -30,12 +30,26 @@ public class TelaPrincipalController {
     private Button btnSair;
 
     @FXML
-    private Label tfNomeFuncionario;
+    private Label lbNomeFuncionario;
 
     @FXML
     private void fecharTela() {
         Stage primaryStage = (Stage) btnSair.getScene().getWindow();
         primaryStage.close();
+    }
+
+    private Funcionario funcionarioLogado;
+
+    public void setFuncionarioLogado(Funcionario funcionario){
+        this.funcionarioLogado = funcionario;
+
+        if (funcionarioLogado != null) {
+            lbNomeFuncionario.setText("Bem-vindo(a): "+funcionarioLogado.getNomeFuncionario());
+
+        } else {
+            lbNomeFuncionario.setText("Bem-vindo(a)");
+
+        }
     }
    
     @FXML
@@ -44,7 +58,7 @@ public class TelaPrincipalController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Clientes");
+        stgTelaPrincipal.setTitle("Clientes | Cadastrar, visualizar, modificar e deletar");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -57,7 +71,7 @@ public class TelaPrincipalController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Clientes");
+        stgTelaPrincipal.setTitle("Pagamentos | Cadastrar, visualizar, modificar e deletar");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -70,7 +84,7 @@ public class TelaPrincipalController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Clientes");
+        stgTelaPrincipal.setTitle("Pedidos | Cadastrar, visualizar, modificar e deletar");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -83,7 +97,7 @@ public class TelaPrincipalController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Clientes");
+        stgTelaPrincipal.setTitle("Produtos | Cadastrar, visualizar, modificar e deletar");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -96,7 +110,7 @@ public class TelaPrincipalController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Clientes");
+        stgTelaPrincipal.setTitle("Morcegão | Login");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

@@ -302,7 +302,7 @@ public class TelaClienteController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Principal");
+        stgTelaPrincipal.setTitle("Morcegão | Loja Online");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

@@ -39,7 +39,7 @@ public class FuncionarioDao {
         }
     }
 
-    public static List<Funcionario> listar(String nome){
+    public static List<Funcionario> listar(String nome) {
         List<Funcionario> lista = new ArrayList<Funcionario>();
 
         String sql = "SELECT * FROM funcionario WHERE nomeFuncionario LIKE ?";
@@ -47,7 +47,7 @@ public class FuncionarioDao {
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, "%"+ nome + "%");
+            ps.setString(1, "%" + nome + "%");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -99,7 +99,7 @@ public class FuncionarioDao {
     }
 
     public static boolean deletar(Funcionario funcionario) {
-        String sql = "DELETE FROM funcionario WHERE idFuncionario = ?"; 
+        String sql = "DELETE FROM funcionario WHERE idFuncionario = ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -111,7 +111,37 @@ public class FuncionarioDao {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
             return false;
-            
+
         }
+    }
+
+    public static Funcionario login(String cpf, String senha) {
+        String sql = "SELECT * FROM funcionario WHERE cpfFuncionario = ? AND senha = ?";
+
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, cpf);
+            ps.setString(2, senha);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Funcionario(rs.getInt("idFuncionario"),
+                rs.getString("nomeFuncionario"),
+                rs.getString("senha"),
+                rs.getString("cpfFuncionario"),
+                rs.getObject("dtNascimento", LocalDate.class), 
+                rs.getString("dtNascimento"));
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO AO REALIZAR LOGIN: " + e.getMessage(), "ERRO!", 3);
+
+        }
+
+        return null;
+
     }
 }

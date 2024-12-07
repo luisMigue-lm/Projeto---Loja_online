@@ -87,9 +87,9 @@
          <children>
             <AnchorPane layoutX="20.0" layoutY="47.0" prefHeight="585.0" prefWidth="1000.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;">
                <children>
-                  <Label fx:id="tfNomeFuncionario" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="-25.0" prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000; -fx-background-radius: 25;" text="Bem vindo &lt;nomeFuncionario&gt;" textFill="WHITE">
+                  <Label fx:id="lbNomeFuncionario" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="-25.0" prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #000000; -fx-background-radius: 25;" text="Bem vindo(a): &lt;nomeFuncionario&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Arial Bold" size="30.0" />
+                        <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
                   <Button fx:id="btnClientes" alignment="CENTER" layoutX="160.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnClientesOnClick" prefHeight="100.0" prefWidth="275.0" styleClass="botao" stylesheets="@estilo.css" text="Clientes">

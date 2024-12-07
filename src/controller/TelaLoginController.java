@@ -3,6 +3,9 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.swing.JOptionPane;
+
+import dao.FuncionarioDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Funcionario;
 
 public class TelaLoginController {
 
@@ -39,7 +43,7 @@ public class TelaLoginController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Funcionário");
+        stgTelaPrincipal.setTitle("Funcionários | Cadastrar, visualizar, modificar e deletar");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -48,15 +52,32 @@ public class TelaLoginController {
 
     @FXML
     void btnLoginOnClick(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("/view/TelaPrincipal.fxml");
-        Parent root = FXMLLoader.load(url);
+        String cpf = tfCPF.getText().trim();
+        String senha = pfSenha.getText().trim();
 
-        Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela Principal");
-        stgTelaPrincipal.setScene(new Scene(root));
-        stgTelaPrincipal.show();
+        Funcionario funcionario = FuncionarioDao.login(cpf, senha);
 
-        fecharTela();
+        if (funcionario != null) {
+
+            URL url = getClass().getResource("/view/TelaPrincipal.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            TelaPrincipalController controller = loader.getController();
+            controller.setFuncionarioLogado(funcionario);
+
+            Stage stgTelaPrincipal = new Stage();
+            stgTelaPrincipal.setTitle("Morcegão | Loja Online");
+            stgTelaPrincipal.setScene(new Scene(root));
+            stgTelaPrincipal.show();
+
+            fecharTela();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF ou senha incorretos!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+
+        }
+
     }
 
 }

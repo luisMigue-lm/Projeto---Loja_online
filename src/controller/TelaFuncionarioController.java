@@ -305,7 +305,7 @@ public class TelaFuncionarioController {
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Tela de Login");
+        stgTelaPrincipal.setTitle("Morcegão | Login");
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

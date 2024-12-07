@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS funcionario(
     `senha` VARCHAR(8) NOT NULL,
     `cpfFuncionario` VARCHAR(14) NOT NULL UNIQUE,
     `dtNascimento` DATE NOT NULL,
-    `emailFuncionario` VARCHAR(255) NOT NULL,
+    `c` VARCHAR(255) NOT NULL,
     PRIMARY KEY(`idFuncionario`)
     );
     
