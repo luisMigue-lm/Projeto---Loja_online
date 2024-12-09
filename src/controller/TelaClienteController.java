@@ -204,6 +204,8 @@ public class TelaClienteController {
 
     @FXML
     void btnCadastrarOnClick(ActionEvent event) {
+        btnDeletar.setDisable(true);
+
         apCadastro.setVisible(true);
         apPesquisa.setVisible(false);
     }

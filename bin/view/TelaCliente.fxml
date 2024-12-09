@@ -179,6 +179,26 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
+                        <Label layoutX="122.0" layoutY="79.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="555.0" layoutY="78.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="144.0" layoutY="195.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="153.0" layoutY="305.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">

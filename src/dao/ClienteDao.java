@@ -20,7 +20,6 @@ public class ClienteDao {
         sql += "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
-
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, cliente.getNomeCliente());
@@ -40,7 +39,6 @@ public class ClienteDao {
 
     public static List<Cliente> listar(String nome) {
         List<Cliente> lista = new ArrayList<Cliente>();
-
         String sql = "SELECT * FROM cliente WHERE nomeCliente LIKE ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
@@ -74,7 +72,6 @@ public class ClienteDao {
     }
 
     public static boolean atualizar(Cliente cliente){
-        
         String sql = "UPDATE cliente SET nomeCliente = ?, genero = ?, cpfCliente = ?, enderecoCliente = ?, telefoneCliente = ? ";
         sql += "WHERE idCliente = ?";
 

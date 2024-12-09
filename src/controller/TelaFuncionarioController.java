@@ -162,7 +162,6 @@ public class TelaFuncionarioController {
     }
 
     Stage stage;
-
     public void setStage(Stage stg) {
         preencherDados((Funcionario) stg.getUserData());
     }
@@ -206,6 +205,8 @@ public class TelaFuncionarioController {
 
     @FXML
     void btnCadastrarOnClick(ActionEvent event) {
+        btnDeletar.setDisable(true);
+
         apCadastro.setVisible(true);
         apPesquisa.setVisible(false);
     }
@@ -223,7 +224,6 @@ public class TelaFuncionarioController {
                 boolean sucesso = FuncionarioDao.deletar(funcionarioSelecionado);
 
                 if (sucesso) {
-
                     obsFunc.remove(funcionarioSelecionado);
                     tbvFuncionarios.refresh();
 
@@ -288,6 +288,7 @@ public class TelaFuncionarioController {
 
         if (funcionariosCadastrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+
         } 
 
     }

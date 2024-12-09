@@ -22,7 +22,6 @@ public class FuncionarioDao {
         sql += "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
-
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, funcionario.getNomeFuncionario());
@@ -41,7 +40,6 @@ public class FuncionarioDao {
 
     public static List<Funcionario> listar(String nome) {
         List<Funcionario> lista = new ArrayList<Funcionario>();
-
         String sql = "SELECT * FROM funcionario WHERE nomeFuncionario LIKE ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
@@ -75,7 +73,6 @@ public class FuncionarioDao {
     }
 
     public static boolean atualizar(Funcionario funcionario) {
-
         String sql = "UPDATE funcionario SET nomeFuncionario = ?, senha = ?, cpfFuncionario = ?, dtNascimento = ?, emailFuncionario = ? ";
         sql += "WHERE idFuncionario = ?";
 
