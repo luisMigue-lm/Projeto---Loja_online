@@ -160,7 +160,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnCadastrarCliente" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarClienteOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Cadastrar" textFill="WHITE">
+                        <Button fx:id="btnCadastrarPedido" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarPedidoOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Cadastrar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -208,7 +208,7 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <TableView layoutX="5.0" layoutY="127.0" prefHeight="360.0" prefWidth="960.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0">
+                        <TableView fx:id="tbvPedidos" layoutX="5.0" layoutY="127.0" prefHeight="360.0" prefWidth="960.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0">
                           <columns>
                             <TableColumn fx:id="colIdPedidos" prefWidth="95.0" text="Código" />
                             <TableColumn fx:id="colQuantidade" prefWidth="165.0" text="Quantidade vendida" />

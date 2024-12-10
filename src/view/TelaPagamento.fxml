@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: f68e1f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPagamentoController">
+<BorderPane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: f68e1f;" stylesheets="@estilo.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPagamentoController">
    <top>
       <HBox alignment="CENTER" prefHeight="190.0" prefWidth="1500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +51,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="230.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCadastrar" alignment="CENTER" mnemonicParsing="false" onAction="#btnCadastrarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Cadastrar">
+            <Button fx:id="btnCadastrar" alignment="CENTER" mnemonicParsing="false" onAction="#btnCadastrarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" text="Cadastrar">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
                </VBox.margin>
             </Button>
             <Pane prefHeight="35.0" prefWidth="215.0" />
-            <Button fx:id="btnPesquisar" alignment="CENTER" mnemonicParsing="false" onAction="#btnPesquisarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Pesquisar">
+            <Button fx:id="btnPesquisar" alignment="CENTER" mnemonicParsing="false" onAction="#btnPesquisarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" text="Pesquisar">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -95,7 +95,7 @@
       <HBox alignment="CENTER_LEFT" pickOnBounds="false" prefHeight="100.0" prefWidth="1500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="70.0" prefWidth="20.0" />
-            <Button fx:id="btnVoltar" alignment="CENTER" mnemonicParsing="false" onAction="#btnVoltarOnClick" prefHeight="48.0" prefWidth="106.0" styleClass="botao" stylesheets="@estilo.css" text="Voltar">
+            <Button fx:id="btnVoltar" alignment="CENTER" mnemonicParsing="false" onAction="#btnVoltarOnClick" prefHeight="48.0" prefWidth="106.0" styleClass="botao" text="Voltar">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -132,7 +132,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfFormaPagamento" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Pix, Débito, Crédito, etc..." stylesheets="@estilo.css">
+                        <TextField fx:id="tfFormaPagamento" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Pix, Débito, Crédito, etc...">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
@@ -141,7 +141,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfTaxaJuros" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="1,5x" styleClass="text-field" stylesheets="@estilo.css">
+                        <TextField fx:id="tfTaxaJuros" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="1,5x" styleClass="text-field">
                            <font>
                               <Font size="16.0" />
                            </font></TextField>
@@ -150,7 +150,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfQuantdParcelas" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="12x" stylesheets="@estilo.css">
+                        <TextField fx:id="tfQuantdParcelas" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="12x">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
@@ -165,11 +165,11 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfDescricao" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="831.0" promptText="Compra de produtos - Nota Fiscal 1234" stylesheets="@estilo.css">
+                        <TextField fx:id="tfDescricao" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="831.0" promptText="Compra de produtos - Nota Fiscal 1234">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
-                        <Button fx:id="btnCadastrarPagamentos" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarClienteOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Cadastrar" textFill="WHITE">
+                        <Button fx:id="btnCadastrarPagamentos" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarPagamentoOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" text="Cadastrar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -177,6 +177,26 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
+                        <Label layoutX="247.0" layoutY="81.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="264.0" layoutY="197.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="556.0" layoutY="197.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="157.0" layoutY="308.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
@@ -237,7 +257,7 @@
    <right>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="230.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnDeletar" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#btnDeletarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Deletar">
+            <Button fx:id="btnDeletar" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#btnDeletarOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" text="Deletar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -259,7 +279,7 @@
                </padding>
             </Button>
             <Pane prefHeight="35.0" prefWidth="215.0" />
-            <Button fx:id="btnOpcoes" alignment="CENTER" mnemonicParsing="false" onAction="#btnOpcoesOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" stylesheets="@estilo.css" text="Opções">
+            <Button fx:id="btnOpcoes" alignment="CENTER" mnemonicParsing="false" onAction="#btnOpcoesOnClick" prefHeight="70.0" prefWidth="190.0" styleClass="botao" text="Opções">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

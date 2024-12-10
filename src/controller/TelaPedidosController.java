@@ -1,20 +1,14 @@
 package controller;
 
-import java.io.IOException;
-import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 public class TelaPedidosController {
 
@@ -31,7 +25,7 @@ public class TelaPedidosController {
     private Button btnCadastrar;
 
     @FXML
-    private Button btnCadastrarCliente;
+    private Button btnCadastrarPedido;
 
     @FXML
     private Button btnDeletar;
@@ -82,6 +76,9 @@ public class TelaPedidosController {
     private TableColumn<?, ?> colQuantidade;
 
     @FXML
+    private TableView<?> tbvPedidos;
+
+    @FXML
     private TextField tfPesquisa;
 
     @FXML
@@ -91,18 +88,12 @@ public class TelaPedidosController {
     private TextField tfQuantdVendida;
 
     @FXML
-    private void fecharTela() {
-        Stage primaryStage = (Stage) btnVoltar.getScene().getWindow();
-        primaryStage.close();
-    }
-
-    @FXML
-    void btnCadastrarClienteOnClick(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnCadastrarOnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCadastrarPedidoOnClick(ActionEvent event) {
 
     }
 
@@ -137,16 +128,8 @@ public class TelaPedidosController {
     }
 
     @FXML
-    void btnVoltarOnClick(ActionEvent event) throws IOException{
-        URL url = getClass().getResource("/view/TelaPrincipal.fxml");
-        Parent root = FXMLLoader.load(url);
+    void btnVoltarOnClick(ActionEvent event) {
 
-        Stage stgTelaPrincipal = new Stage();
-        stgTelaPrincipal.setTitle("Morcegão | Loja Online");
-        stgTelaPrincipal.setScene(new Scene(root));
-        stgTelaPrincipal.show();
-        
-        fecharTela();
     }
 
     @FXML
@@ -161,7 +144,7 @@ public class TelaPedidosController {
 
     @FXML
     void cbIdProdutoOnClick(ActionEvent event) {
-        
+
     }
 
 }

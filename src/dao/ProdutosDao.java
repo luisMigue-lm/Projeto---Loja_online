@@ -102,10 +102,13 @@ public class ProdutosDao {
             ps.setInt(1, produto.getIdProduto());
 
             return (ps.executeUpdate() > 0);
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
             return false;
 
         }
     }
+
+    
 }

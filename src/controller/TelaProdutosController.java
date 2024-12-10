@@ -255,6 +255,9 @@ public class TelaProdutosController {
     void btnLimparOnclick(ActionEvent event) {
         obsProdt.clear();
 
+        btnDeletar.setDisable(true);
+        btnEditar.setDisable(true);
+
     }
 
     @FXML
@@ -266,7 +269,7 @@ public class TelaProdutosController {
         if (apPesquisa.isVisible()) {
             apPesquisa.setVisible(false);
         }
-
+        
         limparCampos();
         obsProdt.clear();
     }

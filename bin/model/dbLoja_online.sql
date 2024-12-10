@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS produtos(
     `nomeProduto` VARCHAR(30) NOT NULL,
     `dtValidade` DATE,
     `fornecedor` VARCHAR(30) NOT NULL,
-    `descricao` VARCHAR(30) NOT NULL,
+    `descricao` VARCHAR(100) NOT NULL,
     `preco` DECIMAL (8,2) NOT NULL,
     PRIMARY KEY(`idProduto`)
     );
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS produtos(
 CREATE TABLE IF NOT EXISTS pagamento(
 	`idFormaPagmnt` INT(11) NOT NULL AUTO_INCREMENT,
     `meioPagmnt` VARCHAR(30) NOT NULL,
-    `taxaJuros` DECIMAL(8,2) NOT NULL,
-    `quantParcelas` INT(2),
+    `taxaJuros` DECIMAL(8,2),
+    `quantParcelas` INT(2) NOT NULL,
     `data` DATE NOT NULL,
-    `descricao` VARCHAR(20) NOT NULL,
+    `descricao` VARCHAR(100) NOT NULL,
     PRIMARY KEY(`idFormaPagmnt`)
     );
     

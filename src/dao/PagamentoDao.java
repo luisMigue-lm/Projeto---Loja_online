@@ -69,4 +69,44 @@ public class PagamentoDao {
 
         }
     }
+
+    public static boolean atualizar(Pagamento pagamento){
+        String sql = "UPDATE pagamento SET meioPagmnt = ?, taxaJuros = ?, quantParcelas = ?, data = ?, descricao = ?";
+        sql += "WHERE idFormaPagmnt = ?";
+
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, pagamento.getMeioPagmnt());
+            ps.setDouble(2, pagamento.getTaxaJuros());
+            ps.setInt(3, pagamento.getQuantParcelas());
+            ps.setObject(4, pagamento.getData());
+            ps.setString(5, pagamento.getDescricao());
+            ps.setInt(6, pagamento.getIdFormaPagmnt());
+
+            return (ps.executeUpdate() > 0);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO AO ATUALIZAR: " + e.getMessage(), "ERRO!", 3);
+            return false;
+
+        }
+    }
+
+    public static boolean deletar(Pagamento pagamento){
+        String sql = "DELETE FROM pagamento WHERE idFormaPagmnt = ?";
+
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, pagamento.getIdFormaPagmnt());
+            
+            return (ps.executeUpdate() > 0);
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
+            return false;
+
+        }
+    }
 }
