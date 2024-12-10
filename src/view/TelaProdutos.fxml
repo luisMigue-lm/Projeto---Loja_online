@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: f68e1f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaProdutosController">
+<BorderPane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: f68e1f;" stylesheets="@estilo.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaProdutosController">
    <top>
       <HBox alignment="CENTER" prefHeight="190.0" prefWidth="1500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -95,7 +95,7 @@
       <HBox alignment="CENTER_LEFT" pickOnBounds="false" prefHeight="100.0" prefWidth="1500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="70.0" prefWidth="20.0" />
-            <Button fx:id="btnVoltar" alignment="CENTER" mnemonicParsing="false" onAction="#btnVoltarOnClick" prefHeight="48.0" prefWidth="106.0" styleClass="botao" stylesheets="@estilo.css" text="Voltar">
+            <Button fx:id="btnVoltar" alignment="CENTER" mnemonicParsing="false" onAction="#btnVoltarOnClick" prefHeight="48.0" prefWidth="106.0" styleClass="botao" text="Voltar">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,14 +125,14 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="apCadastro" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
+                  <AnchorPane fx:id="apCadastro" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0">
                      <children>
                         <Label layoutX="69.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="Nome do produto:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfNomeProduto" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Saco de Arroz" stylesheets="@estilo.css">
+                        <TextField fx:id="tfNomeProduto" layoutX="69.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Saco de Arroz">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
@@ -141,16 +141,16 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfFornecedor" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Pepsico, Coca Cola Refrescos, etc.." styleClass="text-field" stylesheets="@estilo.css">
+                        <TextField fx:id="tfFornecedor" layoutX="513.0" layoutY="111.0" prefHeight="40.0" prefWidth="390.0" promptText="Pepsico, Coca Cola Refrescos, etc.." styleClass="text-field">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial" size="16.0" />
                            </font></TextField>
                         <Label layoutX="513.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="Fornecedor:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfValor" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="25.00" stylesheets="@estilo.css">
+                        <TextField fx:id="tfValor" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="390.0" promptText="25.00">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
@@ -165,11 +165,11 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfDescricao" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="831.0" promptText="Arroz integral - Solito" stylesheets="@estilo.css">
+                        <TextField fx:id="tfDescricao" layoutX="70.0" layoutY="338.0" prefHeight="40.0" prefWidth="831.0" promptText="Arroz integral - Solito">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
-                        <Button fx:id="btnCadastrarProdutos" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarProdutosOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Cadastrar" textFill="WHITE">
+                        <Button fx:id="btnCadastrarProdutos" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarProdutosOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" text="Cadastrar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -177,6 +177,26 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
+                        <Label layoutX="216.0" layoutY="81.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="614.0" layoutY="81.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="118.0" layoutY="197.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="158.0" layoutY="308.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
