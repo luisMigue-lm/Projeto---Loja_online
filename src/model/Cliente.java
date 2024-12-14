@@ -21,6 +21,11 @@ public class Cliente {
     public Cliente() {
     }
 
+    @Override
+    public String toString() {
+        return nomeCliente;
+    }
+
     public int getIdCliente() {
         return idCliente;
     }
@@ -48,7 +53,7 @@ public class Cliente {
     public String getCpfCliente() {
         return cpfCliente;
     }
-    
+
     public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
@@ -68,8 +73,5 @@ public class Cliente {
     public void setTelefoneCliente(String telefoneCliente) {
         this.telefoneCliente = telefoneCliente;
     }
-
-    
-
 
 }

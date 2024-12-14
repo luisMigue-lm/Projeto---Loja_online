@@ -41,22 +41,27 @@ public class PedidoDao {
         }
     }
 
-    public static List<Pedidos> listar(String nome){
+    public static List<Pedidos> listar(String nome) {
         List<Pedidos> lista = new ArrayList<Pedidos>();
         String sql = """
-        SELECT p.idItensPedidos, p.quantdVendida, p.precoVenda, p.idCliente, p.idProduto, p.idFormaPagmnt, 
-               c.nomeCliente, pr.nomeProduto, pg.tipoPagamento
-        FROM pedidos p
-        JOIN cliente c ON p.idCliente = c.idCliente
-        JOIN produtos pr ON p.idProduto = pr.idProduto
-        JOIN pagamento pg ON p.idFormaPagmnt = pg.idFormaPagmnt
-        WHERE c.nomeCliente LIKE ?
-    """;
+                SELECT
+                    p.idItensPedidos,
+                    p.quantdVendida,
+                    p.precoVenda,
+                    c.idCliente, c.nomeCliente,
+                    pr.idProduto, pr.nomeProduto,
+                    pg.idFormaPagmnt, pg.meioPagmnt
+                FROM pedidos p
+                JOIN cliente c ON p.idCliente = c.idCliente
+                JOIN produtos pr ON p.idProduto = pr.idProduto
+                JOIN pagamento pg ON p.idFormaPagmnt = pg.idFormaPagmnt
+                WHERE c.nomeCliente LIKE ?;
+                """;
 
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, "%"+ nome +"%");
+            ps.setString(1, "%" + nome + "%");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -86,7 +91,7 @@ public class PedidoDao {
             }
 
             return lista;
-            
+
         } catch (SQLException e) {
             Alert alerta = new Alert(AlertType.ERROR);
             alerta.setTitle("ERRO!");
@@ -97,8 +102,8 @@ public class PedidoDao {
         }
     }
 
-    public static boolean atualizar(Pedidos pedidos){
-        String sql = "UPDATE pedidos SET quantdVendida = ?, precoVenda = ?, idCliente = ?, idProduto = ?, idFormaPagmnt = ?";
+    public static boolean atualizar(Pedidos pedidos) {
+        String sql = "UPDATE pedidos SET quantdVendida = ?, precoVenda = ?, idCliente = ?, idProduto = ?, idFormaPagmnt = ? ";
         sql += "WHERE idItensPedidos = ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
@@ -113,7 +118,6 @@ public class PedidoDao {
 
             return (ps.executeUpdate() > 0);
 
-            
         } catch (SQLException e) {
             Alert alerta = new Alert(AlertType.ERROR);
             alerta.setTitle("ERRO!");
@@ -124,7 +128,7 @@ public class PedidoDao {
         }
     }
 
-    public static boolean deletar(Pedidos pedidos){
+    public static boolean deletar(Pedidos pedidos) {
         String sql = "DELETE FROM pedidos WHERE idItensPedidos = ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {

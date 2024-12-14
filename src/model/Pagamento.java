@@ -23,6 +23,11 @@ public class Pagamento {
     public Pagamento() {
     }
 
+    @Override
+    public String toString() {
+        return meioPagmnt;
+    }
+
     public int getIdFormaPagmnt() {
         return idFormaPagmnt;
     }

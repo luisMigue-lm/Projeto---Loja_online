@@ -168,9 +168,9 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <ComboBox fx:id="cbCliente" layoutX="67.0" layoutY="235.0" onAction="#cbClienteOnClick" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Cliente" style="-fx-background-color: FFFFFF;" />
-                        <ComboBox fx:id="cbProduto" layoutX="386.0" layoutY="235.0" onAction="#cbProdutoOnClick" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Produto" style="-fx-background-color: FFFFFF;" />
-                        <ComboBox fx:id="cbFormaPagamento" layoutX="691.0" layoutY="235.0" onAction="#cbFormaPagamentoOnClick" prefHeight="40.0" prefWidth="210.0" promptText="Forma de Pagamento" style="-fx-background-color: FFFFFF;" />
+                        <ComboBox fx:id="cmbCliente" layoutX="67.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Cliente" style="-fx-background-color: FFFFFF;" />
+                        <ComboBox fx:id="cmbProduto" layoutX="386.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Produto" style="-fx-background-color: FFFFFF;" />
+                        <ComboBox fx:id="cmbFormaPagamento" layoutX="691.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Forma de Pagamento" style="-fx-background-color: FFFFFF;" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
@@ -211,11 +211,11 @@
                         <TableView fx:id="tbvPedidos" layoutX="5.0" layoutY="127.0" prefHeight="360.0" prefWidth="960.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0">
                           <columns>
                             <TableColumn fx:id="colIdPedidos" prefWidth="95.0" text="Código" />
+                              <TableColumn fx:id="colCliente" prefWidth="165.0" text="Cliente" />
+                              <TableColumn fx:id="colProduto" prefWidth="165.0" text="Produto" />
                             <TableColumn fx:id="colQuantidade" prefWidth="165.0" text="Quantidade vendida" />
                               <TableColumn fx:id="colPreco" prefWidth="165.0" text="Preço da venda" />
-                              <TableColumn fx:id="colIdCliente" prefWidth="165.0" text="Código cliente" />
-                              <TableColumn fx:id="colIdProduto" prefWidth="165.0" text="Código produto" />
-                              <TableColumn fx:id="colIdPagamento" prefWidth="165.0" text="Codigo pagamento" />
+                              <TableColumn fx:id="colPagamento" prefWidth="165.0" text="Forma de Pagamento" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

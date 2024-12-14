@@ -236,7 +236,7 @@ public class TelaClienteController {
                     obsClint.remove(clienteSelcionado);
                     tbvClientes.refresh();
 
-                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente excluído com sucesso!"); 
+                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente excluído com sucesso!");
 
                 } else {
                     alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!"); 
