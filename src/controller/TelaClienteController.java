@@ -3,8 +3,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-
-import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import dao.ClienteDao;
 import javafx.collections.FXCollections;
@@ -14,7 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -123,6 +125,14 @@ public class TelaClienteController {
 
     }
 
+    private void alerta(AlertType tipo, String titulo, String cabecalho, String mensagem) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(cabecalho);
+        alerta.setContentText(mensagem);
+        alerta.show();
+    }
+
     private void limparCampos() {
         tfNome.clear();
         tfGenero.clear();
@@ -141,8 +151,8 @@ public class TelaClienteController {
         Cliente clienteAtualizado = new Cliente(idCliente, nomeCliente, genero, cpfCliente, endereco, telefone);
 
         if (ClienteDao.atualizar(clienteAtualizado)) {
-            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!", "Sucesso!",
-                    JOptionPane.INFORMATION_MESSAGE);
+            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente atualizado com sucesso!");  
+
             btnPesquisar.setDisable(false);
             btnOpcoes.setDisable(false);
             btnCadastrar.setDisable(false);
@@ -150,7 +160,7 @@ public class TelaClienteController {
             limparCampos();
 
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Cliente!");  
 
         }
 
@@ -160,7 +170,6 @@ public class TelaClienteController {
     }
 
     Stage stage;
-
     public void setStage(Stage stg) {
         preencherDados((Cliente) stg.getUserData());
     }
@@ -192,11 +201,11 @@ public class TelaClienteController {
         Cliente cliente = new Cliente(1, nomeCliente, senha, cpfCliente, endereco, telefone);
 
         if (ClienteDao.cadastrar(cliente)) {
-            JOptionPane.showMessageDialog(null, "Seus dados foram cadastrados com sucesso!", "Sucesso!", 1);
+            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente cadastrado com sucesso!");  
             limparCampos();
 
         } else {
-            JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR!", "ERRO!", 0);
+            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Cliente!");  
 
         }
 
@@ -215,24 +224,22 @@ public class TelaClienteController {
         Cliente clienteSelcionado = tbvClientes.getSelectionModel().getSelectedItem();
 
         if (clienteSelcionado != null) {
-            int resposta = JOptionPane.showConfirmDialog(null,
-                    "Deseja realmente excluir o cliente: " + clienteSelcionado.getNomeCliente() + "?", "Confirmação",
-                    JOptionPane.YES_NO_OPTION);
+            Alert alertaDeletar = new Alert(AlertType.CONFIRMATION);
+            alertaDeletar.setTitle("Confirmação");
+            alertaDeletar.setHeaderText("Você tem certeza?");
+            alertaDeletar.setContentText("Deseja realmente excluir o cliente: " + clienteSelcionado.getNomeCliente() + "?");
 
-            if (resposta == JOptionPane.YES_OPTION) {
-                boolean sucesso = ClienteDao.deletar(clienteSelcionado);
+            Optional<ButtonType> resposta = alertaDeletar.showAndWait();
 
-                if (sucesso) {
-
+            if (resposta.isPresent() && resposta.get() == ButtonType.OK) {
+                if (ClienteDao.deletar(clienteSelcionado)) {
                     obsClint.remove(clienteSelcionado);
                     tbvClientes.refresh();
 
-                    JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!", "Sucesso!",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente excluído com sucesso!"); 
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente.", "Erro!",
-                            JOptionPane.ERROR_MESSAGE);
+                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!"); 
 
                 }
             }
@@ -287,8 +294,9 @@ public class TelaClienteController {
         tbvClientes.refresh();
 
         if (clientesCadastrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum cliente encontrado.", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
-        } 
+            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum cliente encontrado!"); 
+
+        }
     }
 
     @FXML

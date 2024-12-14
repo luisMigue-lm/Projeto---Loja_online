@@ -3,14 +3,14 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 
-import javax.swing.JOptionPane;
-
 import dao.FuncionarioDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -74,7 +74,11 @@ public class TelaLoginController {
             fecharTela();
 
         } else {
-            JOptionPane.showMessageDialog(null, "CPF ou senha incorretos!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("Encontramos um erro!");
+            alerta.setContentText("CPF ou senha incorretos!");
+            alerta.show();
 
         }
 

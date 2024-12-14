@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import jdbc.ConexaoMySQL;
 import model.Produto;
 
@@ -32,7 +32,11 @@ public class ProdutosDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO INSERIR: " + e.getMessage(), "ERRO", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO INSERIR: " + e.getMessage());
+            alerta.show();
             return false;
         }
     }
@@ -63,7 +67,11 @@ public class ProdutosDao {
             return lista;
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO LISTAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO LISTAR: " + e.getMessage());
+            alerta.show();
             return null;
 
         }
@@ -86,7 +94,11 @@ public class ProdutosDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO ATUALIZAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO ATUALIZAR: " + e.getMessage());
+            alerta.show();
             return false;
 
         }
@@ -104,7 +116,11 @@ public class ProdutosDao {
             return (ps.executeUpdate() > 0);
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO DELETAR: " + e.getMessage());
+            alerta.show();
             return false;
 
         }

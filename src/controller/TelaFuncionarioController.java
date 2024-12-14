@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
-
-import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import dao.FuncionarioDao;
 import javafx.collections.FXCollections;
@@ -15,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -125,6 +127,14 @@ public class TelaFuncionarioController {
 
     }
 
+    private void alerta(AlertType tipo, String titulo, String cabecalho, String mensagem) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(cabecalho);
+        alerta.setContentText(mensagem);
+        alerta.show();
+    }
+
     private void limparCampos() {
         tfNome.clear();
         tfSenha.clear();
@@ -143,8 +153,8 @@ public class TelaFuncionarioController {
         Funcionario funcionarioAtualizado = new Funcionario(idFuncionario, nomeFuncionario, senha, cpfFuncionario,dtNascimento, emailFuncionario);
 
         if (FuncionarioDao.atualizar(funcionarioAtualizado)) {
-            JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso!", "Sucesso!",
-                    JOptionPane.INFORMATION_MESSAGE);
+            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Funcionário atualizado com sucesso!");  
+
             btnPesquisar.setDisable(false);
             btnOpcoes.setDisable(false);
             btnCadastrar.setDisable(false);
@@ -152,7 +162,7 @@ public class TelaFuncionarioController {
             limparCampos();
 
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar o funcionário.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Funcionário!");  
 
         }
 
@@ -193,12 +203,12 @@ public class TelaFuncionarioController {
                 emailFuncionario);
 
         if (FuncionarioDao.cadastrar(Funcionario)) {
-            JOptionPane.showMessageDialog(null, "Seus dados foram cadastrados com sucesso!", "Sucesso!", 1);
+            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Funcionário cadastrado com sucesso!");  
+
             limparCampos();
 
         } else {
-            JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR!", "ERRO!", 0);
-
+            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Funcionário!");  
         }
 
     }
@@ -216,23 +226,22 @@ public class TelaFuncionarioController {
         Funcionario funcionarioSelecionado = tbvFuncionarios.getSelectionModel().getSelectedItem();
 
         if (funcionarioSelecionado != null) {
-            int resposta = JOptionPane.showConfirmDialog(null,
-                    "Deseja realmente excluir o funcionário: " + funcionarioSelecionado.getNomeFuncionario() + "?",
-                    "Confirmação", JOptionPane.YES_NO_OPTION);
+            Alert alertaDeletar = new Alert(AlertType.CONFIRMATION);
+            alertaDeletar.setTitle("Confirmação");
+            alertaDeletar.setHeaderText("Você tem certeza?");
+            alertaDeletar.setContentText("Deseja realmente excluir o funcionário: " + funcionarioSelecionado.getNomeFuncionario() + "?");
 
-            if (resposta == JOptionPane.YES_OPTION) {
-                boolean sucesso = FuncionarioDao.deletar(funcionarioSelecionado);
+            Optional<ButtonType> resposta = alertaDeletar.showAndWait();
 
-                if (sucesso) {
+            if (resposta.isPresent() && resposta.get() == ButtonType.OK) {
+                if (FuncionarioDao.deletar(funcionarioSelecionado)) {
                     obsFunc.remove(funcionarioSelecionado);
                     tbvFuncionarios.refresh();
 
-                    JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!", "Sucesso!",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Funcionário excluído com sucesso!"); 
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o funcionário.", "Erro!",
-                            JOptionPane.ERROR_MESSAGE);
+                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!"); 
 
                 }
             }
@@ -287,7 +296,7 @@ public class TelaFuncionarioController {
         tbvFuncionarios.refresh();
 
         if (funcionariosCadastrados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum funcionário encontrado!"); 
 
         } 
 

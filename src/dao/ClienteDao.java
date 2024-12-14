@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import jdbc.ConexaoMySQL;
 import model.Cliente;
 
@@ -31,7 +31,11 @@ public class ClienteDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO INSERIR: " + e.getMessage(), "ERRO", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO INSERIR: " + e.getMessage());
+            alerta.show();
             return false;
         }
 
@@ -64,14 +68,18 @@ public class ClienteDao {
             return lista;
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO LISTAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO LISTAR: " + e.getMessage());
+            alerta.show();
             return null;
 
         }
 
     }
 
-    public static boolean atualizar(Cliente cliente){
+    public static boolean atualizar(Cliente cliente) {
         String sql = "UPDATE cliente SET nomeCliente = ?, genero = ?, cpfCliente = ?, enderecoCliente = ?, telefoneCliente = ? ";
         sql += "WHERE idCliente = ?";
 
@@ -88,14 +96,18 @@ public class ClienteDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO ATUALIZAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO ATUALIZAR: " + e.getMessage());
+            alerta.show();
             return false;
 
         }
     }
 
-    public static boolean deletar(Cliente cliente){
-        String sql = "DELETE FROM cliente WHERE idCliente = ?"; 
+    public static boolean deletar(Cliente cliente) {
+        String sql = "DELETE FROM cliente WHERE idCliente = ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -105,9 +117,13 @@ public class ClienteDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO AO DELETAR: " + e.getMessage(), "ERRO!", 3);
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setTitle("ERRO!");
+            alerta.setHeaderText("ERRO!");
+            alerta.setContentText("ERRO AO DELETAR: " + e.getMessage());
+            alerta.show();
             return false;
-            
+
         }
     }
 }
