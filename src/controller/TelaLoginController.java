@@ -130,7 +130,7 @@ public class TelaLoginController {
             }
             
         } catch (Exception e) {
-            // TODO: handle exception
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
 
     }

@@ -34,6 +34,11 @@ public class TelaPrincipalController {
     private Label lbNomeFuncionario;
 
     @FXML
+    private void initialize(){
+        setFuncionarioLogado(funcionarioLogado);
+    }
+
+    @FXML
     private void fecharTela() {
         Stage primaryStage = (Stage) btnSair.getScene().getWindow();
         primaryStage.close();

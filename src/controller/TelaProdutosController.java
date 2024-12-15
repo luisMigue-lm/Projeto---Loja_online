@@ -155,11 +155,6 @@ public class TelaProdutosController {
                     return;
             }
     
-            if (dpDataValidade.getValue() == null) {
-                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
-                return;
-            }
-
             if (forncedor.isEmpty()) {
                 alerta(AlertType.ERROR, "ERRO!", "Nome do Fornecedor inválido!", "O campo Nome do Fornecedor não pode estar vázio.");
                 return;
@@ -239,11 +234,6 @@ public class TelaProdutosController {
             if (nomeProduto.isEmpty()) {
                 alerta(AlertType.ERROR, "ERRO!", "Nome do Produto inválido!", "O campo Nome Produto não pode estar vázio.");
                     return;
-            }
-    
-            if (dpDataValidade.getValue() == null) {
-                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
-                return;
             }
 
             if (forncedor.isEmpty()) {

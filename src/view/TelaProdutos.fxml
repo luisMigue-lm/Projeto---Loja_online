@@ -218,7 +218,7 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="btnEditar" alignment="CENTER" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Editar" textFill="WHITE">
+                        <Button fx:id="btnEditar" alignment="CENTER" disable="true" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" stylesheets="@estilo.css" text="Editar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>

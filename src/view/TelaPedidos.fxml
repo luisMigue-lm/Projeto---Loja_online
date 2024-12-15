@@ -136,7 +136,7 @@
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font></TextField>
-                        <Label contentDisplay="CENTER" layoutX="67.0" layoutY="194.0" prefHeight="41.0" prefWidth="210.0" text="Cliente:">
+                        <Label layoutX="513.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="Preço da venda:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -145,21 +145,24 @@
                            <font>
                               <Font size="16.0" />
                            </font></TextField>
-                        <Label layoutX="513.0" layoutY="70.0" prefHeight="41.0" prefWidth="300.0" text="Preço da venda:">
+                        <Label contentDisplay="CENTER" layoutX="67.0" layoutY="194.0" prefHeight="41.0" prefWidth="210.0" text="Cliente:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="691.0" layoutY="194.0" prefHeight="41.0" prefWidth="210.0" text="Forma de Pagamento:">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Label>
+                        <ComboBox fx:id="cmbCliente" layoutX="67.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Cliente" style="-fx-background-color: FFFFFF;" />
                         <Label layoutX="384.0" layoutY="194.0" prefHeight="41.0" prefWidth="210.0" text="Produto:">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="cmbProduto" layoutX="386.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Produto" style="-fx-background-color: FFFFFF;" />
+                        <Label layoutX="691.0" layoutY="194.0" prefHeight="41.0" prefWidth="210.0" text="Forma de Pagamento:">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbFormaPagamento" layoutX="691.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Forma de Pagamento" style="-fx-background-color: FFFFFF;" />
                         <Button fx:id="btnCadastrarPedido" alignment="CENTER" layoutX="396.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCadastrarPedidoOnClick" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" text="Cadastrar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
@@ -168,9 +171,31 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <ComboBox fx:id="cmbCliente" layoutX="67.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Cliente" style="-fx-background-color: FFFFFF;" />
-                        <ComboBox fx:id="cmbProduto" layoutX="386.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Selecione um Produto" style="-fx-background-color: FFFFFF;" />
-                        <ComboBox fx:id="cmbFormaPagamento" layoutX="691.0" layoutY="235.0" prefHeight="40.0" prefWidth="210.0" promptText="Forma de Pagamento" style="-fx-background-color: FFFFFF;" />
+                        <Label layoutX="314.0" layoutY="81.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="647.0" layoutY="81.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="130.0" layoutY="205.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="456.0" layoutY="206.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="871.0" layoutY="205.0" text="*" textFill="#f68e1f">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="apPesquisa" layoutX="15.0" layoutY="26.0" prefHeight="535.0" prefWidth="970.0" visible="false">
@@ -192,7 +217,7 @@
                               <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="btnEditar" alignment="CENTER" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" text="Editar" textFill="WHITE">
+                        <Button fx:id="btnEditar" alignment="CENTER" disable="true" layoutX="85.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnEditarOnClick" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: f68e1f;" styleClass="botao-login" text="Editar" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>

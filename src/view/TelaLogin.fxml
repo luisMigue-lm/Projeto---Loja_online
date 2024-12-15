@@ -50,7 +50,7 @@
    <center>
       <Pane BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="39.0" layoutY="56.0" prefHeight="374.0" prefWidth="482.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+            <AnchorPane layoutX="38.0" layoutY="55.0" prefHeight="375.0" prefWidth="485.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
                <children>
                   <Label alignment="CENTER" layoutX="143.0" layoutY="-23.0" prefHeight="46.0" prefWidth="185.0" style="-fx-background-color: black; -fx-background-radius: 25;" stylesheets="@estilo.css" text="LOGIN" textFill="WHITE">
                      <font>
@@ -103,6 +103,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label layoutX="67.0" layoutY="62.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="150.0" text="*" textFill="#f68e1f">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
