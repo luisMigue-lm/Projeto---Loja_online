@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Funcionario;
 
@@ -59,6 +60,7 @@ public class TelaPrincipalController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Clientes | Cadastrar, visualizar, modificar e deletar");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -72,6 +74,7 @@ public class TelaPrincipalController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Pagamentos | Cadastrar, visualizar, modificar e deletar");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -85,6 +88,7 @@ public class TelaPrincipalController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Pedidos | Cadastrar, visualizar, modificar e deletar");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -98,6 +102,7 @@ public class TelaPrincipalController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Produtos | Cadastrar, visualizar, modificar e deletar");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 
@@ -111,6 +116,7 @@ public class TelaPrincipalController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Morcegão | Login");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -142,34 +143,123 @@ public class TelaClienteController {
     }
 
     private void salvarAtualizacao(int idCliente) {
-        String nomeCliente = tfNome.getText().trim();
-        String genero = tfGenero.getText().trim();
-        String cpfCliente = tfCPF.getText();
-        String endereco = tfEndereco.getText();
-        String telefone = tfTelefone.getText();
+        try {
+            String nomeCliente = tfNome.getText().trim();
+            String genero = tfGenero.getText().trim();
+            String cpfCliente = tfCPF.getText().trim().replaceAll("[^\\d]", "");
+            String endereco = tfEndereco.getText().trim();
+            String telefone = tfTelefone.getText().trim().replaceAll("[^\\d]", "");
 
-        Cliente clienteAtualizado = new Cliente(idCliente, nomeCliente, genero, cpfCliente, endereco, telefone);
+            if (!nomeCliente.contains(" ")) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome incompleto!",
+                        "Seu nome precisa ter um espaço dividindo o nome do sobrenome!");
+                return;
+            }
 
-        if (ClienteDao.atualizar(clienteAtualizado)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente atualizado com sucesso!");  
+            if (nomeCliente.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome inválido!", "O campo Nome não pode estar vázio.");
+                return;
+            }
 
-            btnPesquisar.setDisable(false);
-            btnOpcoes.setDisable(false);
-            btnCadastrar.setDisable(false);
-            tbvClientes.refresh();
-            limparCampos();
+            if (genero.equals("M")) {
+                genero = genero.replaceAll("M", "Masculino");
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Cliente!");  
+            if (genero.equals("F")) {
+                genero = genero.replaceAll("F", "Feminino");
+            }
 
+            if (!cpfCliente.matches("\\d+")) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O CPF só pode conter números.");
+                return;
+            }
+
+            if (cpfCliente.contains(" ")) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF não pode conter espaços.");
+                return;
+            }
+
+            if (cpfCliente.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF não pode estar vázio.");
+                return;
+            }
+
+            if (cpfCliente.length() != 11) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF precisa ter 11 ou 14 digitos.");
+                return;
+            }
+
+            if (cpfCliente.length() == 11) {
+                cpfCliente = cpfCliente.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+            }
+
+            if (telefone.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Telefone inválido!", "O campo Telefone não pode estar vázio");
+                return;
+            }
+
+            if (telefone.length() != 11) {
+                alerta(AlertType.ERROR, "ERRO!", "Telefone inválido!",
+                        "O campo Telefone precisa ter 11 ou 15 digitos.");
+                return;
+            }
+
+            if (telefone.length() == 11) {
+                telefone = telefone.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+            }
+
+            if (endereco.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Endereço inválido!", "O campo Endereço não pode estar vázio.");
+                return;
+            }
+
+            if (endereco.contains(" ")) {
+                if (endereco.contains("Av.")) {
+                    endereco = endereco.replace("Av.", "Avenida");
+
+                } else if (endereco.contains("R.")) {
+                    endereco = endereco.replace("R.", "Rua");
+
+                } else if (endereco.contains("Al.")) {
+                    endereco = endereco.replace("Al.", "Alameda");
+
+                } else if (endereco.contains("Pç.")) {
+                    endereco = endereco.replace("Pç.", "Praça");
+
+                }
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Endereço incompleto!", "Seu endereço precisa ter um espaço!");
+                return;
+
+            }
+
+            Cliente clienteAtualizado = new Cliente(idCliente, nomeCliente, genero, cpfCliente, endereco, telefone);
+
+            if (ClienteDao.atualizar(clienteAtualizado)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente atualizado com sucesso!");
+
+                btnPesquisar.setDisable(false);
+                btnOpcoes.setDisable(false);
+                btnCadastrar.setDisable(false);
+                tbvClientes.refresh();
+                limparCampos();
+
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Cliente!");
+
+            }
+
+            btnCadastrarCliente.setText("Cadastrar");
+            btnCadastrarCliente.setOnAction(this::btnCadastrarClienteOnClick);
+
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
-
-        btnCadastrarCliente.setText("Cadastrar");
-        btnCadastrarCliente.setOnAction(this::btnCadastrarClienteOnClick);
 
     }
 
     Stage stage;
+
     public void setStage(Stage stg) {
         preencherDados((Cliente) stg.getUserData());
     }
@@ -192,21 +282,108 @@ public class TelaClienteController {
 
     @FXML
     void btnCadastrarClienteOnClick(ActionEvent event) {
-        String nomeCliente = tfNome.getText().trim();
-        String senha = tfGenero.getText().trim();
-        String cpfCliente = tfCPF.getText().trim();
-        String endereco = tfEndereco.getText().trim();
-        String telefone = tfTelefone.getText().trim();
+        try {
+            String nomeCliente = tfNome.getText().trim();
+            String genero = tfGenero.getText().trim();
+            String cpfCliente = tfCPF.getText().trim().replaceAll("[^\\d]", "");
+            String endereco = tfEndereco.getText().trim();
+            String telefone = tfTelefone.getText().trim().replaceAll("[^\\d]", "");
 
-        Cliente cliente = new Cliente(1, nomeCliente, senha, cpfCliente, endereco, telefone);
+            if (!nomeCliente.contains(" ")) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome incompleto!",
+                        "Seu nome precisa ter um espaço dividindo o nome do sobrenome!");
+                return;
+            }
 
-        if (ClienteDao.cadastrar(cliente)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente cadastrado com sucesso!");  
-            limparCampos();
+            if (nomeCliente.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome inválido!", "O campo Nome não pode estar vázio.");
+                return;
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Cliente!");  
+            if (genero.equals("M")) {
+                genero = genero.replaceAll("M", "Masculino");
+            }
 
+            if (genero.equals("F")) {
+                genero = genero.replaceAll("F", "Feminino");
+            }
+
+            if (!cpfCliente.matches("\\d+")) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O CPF só pode conter números.");
+                return;
+            }
+
+            if (cpfCliente.contains(" ")) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF não pode conter espaços.");
+                return;
+            }
+
+            if (cpfCliente.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF não pode estar vázio.");
+                return;
+            }
+
+            if (cpfCliente.length() != 11) {
+                alerta(AlertType.ERROR, "ERRO!", "CPF inválido!", "O campo CPF precisa ter 11 ou 14 digitos.");
+                return;
+            }
+
+            if (cpfCliente.length() == 11) {
+                cpfCliente = cpfCliente.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+            }
+
+            if (telefone.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Telefone inválido!", "O campo Telefone não pode estar vázio");
+                return;
+            }
+
+            if (telefone.length() != 11) {
+                alerta(AlertType.ERROR, "ERRO!", "Telefone inválido!",
+                        "O campo Telefone precisa ter 11 ou 15 digitos.");
+                return;
+            }
+
+            if (telefone.length() == 11) {
+                telefone = telefone.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+            }
+
+            if (endereco.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Endereço inválido!", "O campo Endereço não pode estar vázio.");
+                return;
+            }
+
+            if (endereco.contains(" ")) {
+                if (endereco.contains("Av.")) {
+                    endereco = endereco.replace("Av.", "Avenida");
+
+                } else if (endereco.contains("R.")) {
+                    endereco = endereco.replace("R.", "Rua");
+
+                } else if (endereco.contains("Al.")) {
+                    endereco = endereco.replace("Al.", "Alameda");
+
+                } else if (endereco.contains("Pç.")) {
+                    endereco = endereco.replace("Pç.", "Praça");
+
+                }
+
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Endereço incompleto!", "Seu endereço precisa ter um espaço!");
+                return;
+            }
+
+            Cliente cliente = new Cliente(1, nomeCliente, genero, cpfCliente, endereco, telefone);
+
+            if (ClienteDao.cadastrar(cliente)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente cadastrado com sucesso!");
+                limparCampos();
+
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Cliente!");
+            }
+
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
 
     }
@@ -227,7 +404,8 @@ public class TelaClienteController {
             Alert alertaDeletar = new Alert(AlertType.CONFIRMATION);
             alertaDeletar.setTitle("Confirmação");
             alertaDeletar.setHeaderText("Você tem certeza?");
-            alertaDeletar.setContentText("Deseja realmente excluir o cliente: " + clienteSelcionado.getNomeCliente() + "?");
+            alertaDeletar
+                    .setContentText("Deseja realmente excluir o cliente: " + clienteSelcionado.getNomeCliente() + "?");
 
             Optional<ButtonType> resposta = alertaDeletar.showAndWait();
 
@@ -239,7 +417,7 @@ public class TelaClienteController {
                     alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Cliente excluído com sucesso!");
 
                 } else {
-                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!"); 
+                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!");
 
                 }
             }
@@ -271,14 +449,8 @@ public class TelaClienteController {
 
     @FXML
     void btnOpcoesOnClick(ActionEvent event) {
-        if (apCadastro.isVisible()) {
-            apCadastro.setVisible(false);
-        }
-
-        if (apPesquisa.isVisible()) {
-            apPesquisa.setVisible(false);
-        }
-
+        apCadastro.setVisible(false);
+        apPesquisa.setVisible(false);
         limparCampos();
         obsClint.clear();
     }
@@ -294,7 +466,7 @@ public class TelaClienteController {
         tbvClientes.refresh();
 
         if (clientesCadastrados.isEmpty()) {
-            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum cliente encontrado!"); 
+            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum cliente encontrado!");
 
         }
     }
@@ -313,6 +485,7 @@ public class TelaClienteController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Morcegão | Loja Online");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

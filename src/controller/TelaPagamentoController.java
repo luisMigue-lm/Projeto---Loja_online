@@ -21,10 +21,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -102,7 +105,7 @@ public class TelaPagamentoController {
     private TextField tfPesquisa;
 
     @FXML
-    private TextField tfQuantdParcelas;
+    private Spinner<Integer> spnQuantdParcelas;
 
     @FXML
     private TextField tfTaxaJuros;
@@ -121,12 +124,15 @@ public class TelaPagamentoController {
         obsForPagmt = FXCollections.observableArrayList();
         tbvPagamentos.setItems(obsForPagmt);
 
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12);
+        spnQuantdParcelas.setValueFactory(valueFactory);
+
         tbvPagamentos.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             btnEditar.setDisable(newValue == null);
             btnDeletar.setDisable(newValue == null);
 
         });
-        
+
     }
 
     private void alerta(AlertType tipo, String titulo, String cabecalho, String mensagem) {
@@ -140,36 +146,62 @@ public class TelaPagamentoController {
     private void limparCampos() {
         tfFormaPagamento.clear();
         tfTaxaJuros.clear();
-        tfQuantdParcelas.clear();
+        spnQuantdParcelas.setValueFactory(null);
         dpDataPagamento.setValue(null);
         tfDescricao.clear();
     }
 
     private void salvarAtualizacao(int idFormaPagmnt) {
-        String formaPagamento = tfFormaPagamento.getText().trim();
-        double taxaJuros = Double.parseDouble(tfTaxaJuros.getText());
-        int qntdParcelas = Integer.parseInt(tfQuantdParcelas.getText());
-        LocalDate data = dpDataPagamento.getValue();
-        String descricao = tfDescricao.getText().trim();
-        
-        Pagamento pagamentoAtualizado = new Pagamento(idFormaPagmnt, formaPagamento, taxaJuros, qntdParcelas, data, descricao);
+        try {
+            String formaPagamento = tfFormaPagamento.getText().trim();
+            double taxaJuros = Double.parseDouble(tfTaxaJuros.getText().replace(",", "."));
+            int qntdParcelas = spnQuantdParcelas.getValue();
+            LocalDate data = dpDataPagamento.getValue();
+            String descricao = tfDescricao.getText().trim();
 
-        if (PagamentoDao.atualizar(pagamentoAtualizado)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Forma de pagamento atualizada com sucesso!");  
+            if (formaPagamento.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Forma de Pagamento inválida!",
+                        "O campo Forma de Pagamento não pode estar vázio.");
+                return;
+            }
 
-            btnPesquisar.setDisable(false);
-            btnOpcoes.setDisable(false);
-            btnCadastrar.setDisable(false);
-            tbvPagamentos.refresh();
-            limparCampos();
+            if (dpDataPagamento.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
+                return;
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Forma de pagamento!");  
+            if (descricao.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Descrição inválida!", "O campo Descrição não pode estar vázio.");
+                return;
+            }
 
+            Pagamento pagamentoAtualizado = new Pagamento(idFormaPagmnt, formaPagamento, taxaJuros, qntdParcelas, data,
+                    descricao);
+
+            if (PagamentoDao.atualizar(pagamentoAtualizado)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!",
+                        "Forma de pagamento atualizada com sucesso!");
+
+                btnPesquisar.setDisable(false);
+                btnOpcoes.setDisable(false);
+                btnCadastrar.setDisable(false);
+                tbvPagamentos.refresh();
+                limparCampos();
+
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Forma de pagamento!");
+
+            }
+
+            btnCadastrarPagamentos.setText("Cadastrar");
+            btnCadastrarPagamentos.setOnAction(this::btnCadastrarPagamentoOnClick);
+
+        } catch (NumberFormatException e){
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro ao converter: " + e.getMessage());
+            
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
-
-        btnCadastrarPagamentos.setText("Cadastrar");
-        btnCadastrarPagamentos.setOnAction(this::btnCadastrarPagamentoOnClick);
 
     }
 
@@ -177,11 +209,11 @@ public class TelaPagamentoController {
     public void setStage(Stage stg) {
         preencherDados((Pagamento) stg.getUserData());
     }
-    
+
     private void preencherDados(Pagamento pagamento) {
         tfFormaPagamento.setText(pagamento.getMeioPagmnt());
         tfTaxaJuros.setText(String.valueOf(pagamento.getTaxaJuros()));
-        tfQuantdParcelas.setText(String.valueOf(pagamento.getQuantParcelas()));
+        spnQuantdParcelas.getValueFactory().setValue(pagamento.getQuantParcelas());
         dpDataPagamento.setValue(pagamento.getData());
         tfDescricao.setText(pagamento.getDescricao());
 
@@ -195,22 +227,46 @@ public class TelaPagamentoController {
 
     @FXML
     void btnCadastrarPagamentoOnClick(ActionEvent event) {
-        String formaPagamento = tfFormaPagamento.getText().trim();
-        double taxaJuros = Double.parseDouble(tfTaxaJuros.getText());
-        int qntdParcelas = Integer.parseInt(tfQuantdParcelas.getText());
-        LocalDate data = dpDataPagamento.getValue();
-        String descricao = tfDescricao.getText().trim();
+        try {
+            String formaPagamento = tfFormaPagamento.getText().trim();
+            double taxaJuros = Double.parseDouble(tfTaxaJuros.getText().replace(",", "."));
+            int qntdParcelas = spnQuantdParcelas.getValue();
+            LocalDate data = dpDataPagamento.getValue();
+            String descricao = tfDescricao.getText().trim();
 
-        Pagamento pagamento = new Pagamento(1, formaPagamento, taxaJuros, qntdParcelas, data, descricao);
+            if (formaPagamento.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Forma de Pagamento inválida!",
+                        "O campo Forma de Pagamento não pode estar vázio.");
+                return;
+            }
 
-        if (PagamentoDao.cadastrar(pagamento)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Forma de pagamento cadastrado com sucesso!");  
-            limparCampos();
+            if (dpDataPagamento.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
+                return;
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Forma de pagamento!");  
+            if (descricao.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Descrição inválida!",
+                        "O campo Descrição não pode estar vázio.");
+                return;
+            }
 
-        }
+            Pagamento pagamento = new Pagamento(1, formaPagamento, taxaJuros, qntdParcelas, data, descricao);
+
+            if (PagamentoDao.cadastrar(pagamento)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!",
+                        "Forma de pagamento cadastrado com sucesso!");
+                limparCampos();
+
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Forma de pagamento!");
+            }
+
+        } catch (NumberFormatException e){
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro ao converter: " + e.getMessage());
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
+         }
     }
 
     @FXML
@@ -228,7 +284,8 @@ public class TelaPagamentoController {
             Alert alertaDeletar = new Alert(AlertType.CONFIRMATION);
             alertaDeletar.setTitle("Confirmação");
             alertaDeletar.setHeaderText("Você tem certeza?");
-            alertaDeletar.setContentText("Deseja realmente excluir a Forma de pagamento: " + pagamentoSelecionado.getMeioPagmnt() + "?");
+            alertaDeletar.setContentText(
+                    "Deseja realmente excluir a Forma de pagamento: " + pagamentoSelecionado.getMeioPagmnt() + "?");
 
             Optional<ButtonType> resposta = alertaDeletar.showAndWait();
 
@@ -237,10 +294,11 @@ public class TelaPagamentoController {
                     obsForPagmt.remove(pagamentoSelecionado);
                     tbvPagamentos.refresh();
 
-                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Forma de pagamento excluído com sucesso!"); 
+                    alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!",
+                            "Forma de pagamento excluído com sucesso!");
 
                 } else {
-                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!"); 
+                    alerta(AlertType.ERROR, "ERRO!", "OCORREU UM ERRO!", "Encontramos um erro ao realizar a ação!");
 
                 }
             }
@@ -262,6 +320,7 @@ public class TelaPagamentoController {
 
         btnCadastrarPagamentos.setText("Atualizar");
         btnCadastrarPagamentos.setOnAction(e -> salvarAtualizacao(pagamentoSelecionado.getIdFormaPagmnt()));
+
     }
 
     @FXML
@@ -271,14 +330,8 @@ public class TelaPagamentoController {
 
     @FXML
     void btnOpcoesOnClick(ActionEvent event) {
-        if (apCadastro.isVisible()) {
-            apCadastro.setVisible(false);
-        }
-
-        if (apPesquisa.isVisible()) {
-            apPesquisa.setVisible(false);
-        }
-
+        apCadastro.setVisible(false);
+        apPesquisa.setVisible(false);
         limparCampos();
         obsForPagmt.clear();
     }
@@ -301,18 +354,20 @@ public class TelaPagamentoController {
         tbvPagamentos.refresh();
 
         if (pagamentosSelecionados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado.", "Aviso!",
+                    JOptionPane.INFORMATION_MESSAGE);
 
-        } 
+        }
     }
 
     @FXML
-    void btnVoltarOnClick(ActionEvent event) throws IOException{
+    void btnVoltarOnClick(ActionEvent event) throws IOException {
         URL url = getClass().getResource("/view/TelaPrincipal.fxml");
         Parent root = FXMLLoader.load(url);
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Morcegão | Loja Online");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

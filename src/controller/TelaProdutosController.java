@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -142,30 +143,60 @@ public class TelaProdutosController {
     }
 
     private void salvarAtualizacao(int idProduto) {
-        String nomeProduto = tfNomeProduto.getText().trim();
-        LocalDate dtValidade = dpDataValidade.getValue();
-        String forncedor = tfFornecedor.getText().trim();
-        String descricao = tfDescricao.getText().trim();
-        double valor = Double.parseDouble(tfValor.getText());
+        try {
+            String nomeProduto = tfNomeProduto.getText().trim();
+            LocalDate dtValidade = dpDataValidade.getValue();
+            String forncedor = tfFornecedor.getText().trim();
+            String descricao = tfDescricao.getText().trim();
+            double valor = Double.parseDouble(tfValor.getText().trim().replace(",", "."));
+    
+            if (nomeProduto.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome do Produto inválido!", "O campo Nome Produto não pode estar vázio.");
+                    return;
+            }
+    
+            if (dpDataValidade.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
+                return;
+            }
 
-        Produto produtoAtualizado = new Produto(idProduto, nomeProduto, dtValidade, forncedor, descricao, valor);
+            if (forncedor.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome do Fornecedor inválido!", "O campo Nome do Fornecedor não pode estar vázio.");
+                return;
+            }
 
-        if (ProdutosDao.atualizar(produtoAtualizado)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Produto atualizado com sucesso!");  
+            if (descricao.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Descrição inválida!", "O campo Descrição não pode estar vázio.");
+                return;
+            }
 
-            btnPesquisar.setDisable(false);
-            btnOpcoes.setDisable(false);
-            btnCadastrar.setDisable(false);
-            tbvProdutos.refresh();
-            limparCampos();
+            if (valor < 0.0) {
+                alerta(AlertType.ERROR, "ERRO!", "Valor inválido!", "O campo Valor não pode ser menor do que zero.");
+                return;
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Produto!");  
-
+            Produto produtoAtualizado = new Produto(idProduto, nomeProduto, dtValidade, forncedor, descricao, valor);
+    
+            if (ProdutosDao.atualizar(produtoAtualizado)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Produto atualizado com sucesso!");  
+    
+                btnPesquisar.setDisable(false);
+                btnOpcoes.setDisable(false);
+                btnCadastrar.setDisable(false);
+                tbvProdutos.refresh();
+                limparCampos();
+    
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao atualizar Produto!");  
+    
+            }
+    
+            btnCadastrarProdutos.setText("Cadastrar");
+            btnCadastrarProdutos.setOnAction(this::btnCadastrarProdutosOnClick);
+            
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
-
-        btnCadastrarProdutos.setText("Cadastrar");
-        btnCadastrarProdutos.setOnAction(this::btnCadastrarProdutosOnClick);
 
     }
 
@@ -198,22 +229,53 @@ public class TelaProdutosController {
 
     @FXML
     void btnCadastrarProdutosOnClick(ActionEvent event) {
-        String nomeProduto = tfNomeProduto.getText().trim();
-        LocalDate dtValidade = dpDataValidade.getValue();
-        String forncedor = tfFornecedor.getText().trim();
-        String descricao = tfDescricao.getText().trim();
-        double valor = Double.parseDouble(tfValor.getText());
+        try {
+            String nomeProduto = tfNomeProduto.getText().trim();
+            LocalDate dtValidade = dpDataValidade.getValue();
+            String forncedor = tfFornecedor.getText().trim();
+            String descricao = tfDescricao.getText().trim();
+            double valor = Double.parseDouble(tfValor.getText().trim().replace(",", "."));
+    
+            if (nomeProduto.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome do Produto inválido!", "O campo Nome Produto não pode estar vázio.");
+                    return;
+            }
+    
+            if (dpDataValidade.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Data inválida!", "Por favor, selecione uma data.");
+                return;
+            }
 
-        Produto produto = new Produto(1, nomeProduto, dtValidade, forncedor, descricao, valor);
+            if (forncedor.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Nome do Fornecedor inválido!", "O campo Nome do Fornecedor não pode estar vázio.");
+                return;
+            }
 
-        if (ProdutosDao.cadastrar(produto)) {
-            alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Produto cadastrado com sucesso!");  
-            limparCampos();
+            if (descricao.isEmpty()) {
+                alerta(AlertType.ERROR, "ERRO!", "Descrição inválida!", "O campo Descrição não pode estar vázio.");
+                return;
+            }
 
-        } else {
-            alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Produto!");  
-
+            if (valor < 0.0) {
+                alerta(AlertType.ERROR, "ERRO!", "Valor inválido!", "O campo Valor não pode ser menor do que zero.");
+                return;
+            }
+    
+            Produto produto = new Produto(1, nomeProduto, dtValidade, forncedor, descricao, valor);
+    
+            if (ProdutosDao.cadastrar(produto)) {
+                alerta(AlertType.INFORMATION, "Sucesso!", "É um sucesso!", "Produto cadastrado com sucesso!");  
+                limparCampos();
+    
+            } else {
+                alerta(AlertType.ERROR, "ERRO!", "Encontremos um erro!", "Erro ao cadastrar Produto!");  
+    
+            }
+            
+        } catch (Exception e) {
+            alerta(AlertType.ERROR, "ERRO!", "Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
         }
+        
     }
 
     @FXML
@@ -272,14 +334,8 @@ public class TelaProdutosController {
 
     @FXML
     void btnOpcoesOnClick(ActionEvent event) {
-        if (apCadastro.isVisible()) {
-            apCadastro.setVisible(false);
-        }
-
-        if (apPesquisa.isVisible()) {
-            apPesquisa.setVisible(false);
-        }
-        
+        apCadastro.setVisible(false);
+        apPesquisa.setVisible(false);
         limparCampos();
         obsProdt.clear();
     }
@@ -313,6 +369,7 @@ public class TelaProdutosController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Morcegão | Loja Online");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

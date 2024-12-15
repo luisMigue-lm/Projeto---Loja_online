@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -130,10 +131,12 @@ public class TelaPedidosController {
         obsClint = FXCollections.observableArrayList(ClienteDao.listar(" "));
         cmbCliente.setItems(obsClint);
 
-        obsProdt = FXCollections.observableArrayList(ProdutosDao.listar(" "));
+        
+
+        obsProdt = FXCollections.observableArrayList(ProdutosDao.listar(""));
         cmbProduto.setItems(obsProdt);
 
-        obsPagmt = FXCollections.observableArrayList(PagamentoDao.listar(" "));
+        obsPagmt = FXCollections.observableArrayList(PagamentoDao.listar(""));
         cmbFormaPagamento.setItems(obsPagmt);
 
         tbvPedidos.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
@@ -162,10 +165,35 @@ public class TelaPedidosController {
     private void salvarAtualizacao(int idItensPedidos) {
         try {
             int quantdVendida = Integer.parseInt(tfQuantdVendida.getText());
-            double precoVenda = Double.parseDouble(tfPrecoVenda.getText());
+            double precoVenda = Double.parseDouble(tfPrecoVenda.getText().replace(",", "."));
             Cliente cliente = cmbCliente.getSelectionModel().getSelectedItem();
             Produto produto = cmbProduto.getSelectionModel().getSelectedItem();
             Pagamento pagamento = cmbFormaPagamento.getSelectionModel().getSelectedItem();
+
+            if (quantdVendida <= 0) {
+                alerta(AlertType.ERROR, "ERRO!", "Quantidade inválida!", "Por favor, insira uma quantidade real.");
+                return;
+            }
+
+            if (precoVenda < 0.0) {
+                alerta(AlertType.ERROR, "ERRO!", "Valor inválido!", "Por favor, insira um valor positivo.");
+                return;
+            }
+
+            if (cmbCliente.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Cliente inválido!", "Por favor, selecione um cliente.");
+                return;
+            }
+
+            if (cmbProduto.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Produto inválido!", "Por favor, selecione um produto.");
+                return;
+            }
+
+            if (cmbFormaPagamento.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Forma de Pagamento inválida!", "Por favor, selecione uma forma de pagamento.");
+                return;
+            }
 
             Pedidos pedidosAtualizado = new Pedidos(idItensPedidos, quantdVendida, precoVenda, cliente, produto,
                     pagamento);
@@ -227,10 +255,35 @@ public class TelaPedidosController {
     void btnCadastrarPedidoOnClick(ActionEvent event) {
         try {
             int quantdVendida = Integer.parseInt(tfQuantdVendida.getText());
-            double precoVenda = Double.parseDouble(tfPrecoVenda.getText());
+            double precoVenda = Double.parseDouble(tfPrecoVenda.getText().trim().replace(",", "."));
             Cliente cliente = cmbCliente.getSelectionModel().getSelectedItem();
             Produto produto = cmbProduto.getSelectionModel().getSelectedItem();
             Pagamento pagamento = cmbFormaPagamento.getSelectionModel().getSelectedItem();
+
+            if (quantdVendida <= 0) {
+                alerta(AlertType.ERROR, "ERRO!", "Quantidade inválida!", "Por favor, insira uma quantidade real.");
+                return;
+            }
+
+            if (precoVenda < 0.0) {
+                alerta(AlertType.ERROR, "ERRO!", "Valor inválido!", "Por favor, insira um valor positivo.");
+                return;
+            }
+
+            if (cmbCliente.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Cliente inválido!", "Por favor, selecione um cliente.");
+                return;
+            }
+
+            if (cmbProduto.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Produto inválido!", "Por favor, selecione um produto.");
+                return;
+            }
+
+            if (cmbFormaPagamento.getValue() == null) {
+                alerta(AlertType.ERROR, "ERRO!", "Forma de Pagamento inválida!", "Por favor, selecione uma forma de pagamento.");
+                return;
+            }
 
             Pedidos pedidos = new Pedidos(1, quantdVendida, precoVenda, cliente, produto, pagamento);
 
@@ -298,15 +351,9 @@ public class TelaPedidosController {
     }
 
     @FXML
-    void btnOpcoesOnClick(ActionEvent event) {
-        if (apCadastro.isVisible()) {
-            apCadastro.setVisible(false);
-        }
-
-        if (apPesquisa.isVisible()) {
-            apPesquisa.setVisible(false);
-        }
-
+    void btnOpcoesOnClick(ActionEvent event) { 
+        apCadastro.setVisible(false);
+        apPesquisa.setVisible(false);
         limparCampos();
         obsPedd.clear();
     }
@@ -328,7 +375,7 @@ public class TelaPedidosController {
         tbvPedidos.refresh();
 
         if (pedidosCadastrados.isEmpty()) {
-            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum cliente encontrado!");
+            alerta(AlertType.WARNING, "AVISO!", "É um AVISO!", "Nenhum registro de pedido encontrado!");
 
         }
     }
@@ -340,6 +387,7 @@ public class TelaPedidosController {
 
         Stage stgTelaPrincipal = new Stage();
         stgTelaPrincipal.setTitle("Morcegão | Loja Online");
+        stgTelaPrincipal.getIcons().add(new Image("file:src/resources/imgs/Logo - Laranja.png"));
         stgTelaPrincipal.setScene(new Scene(root));
         stgTelaPrincipal.show();
 

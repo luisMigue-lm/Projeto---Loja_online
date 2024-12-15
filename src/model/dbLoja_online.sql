@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS cliente(
     `nomeCliente` VARCHAR(100) NOT NULL,
     `genero` VARCHAR(20),
     `cpfCliente` VARCHAR(14) NOT NULL UNIQUE,
-    `telefoneCliente` VARCHAR(12) NOT NULL,
+    `telefoneCliente` VARCHAR(15) NOT NULL,
     `enderecoCliente` VARCHAR(255) NOT NULL,
     PRIMARY KEY(`idCliente`)
     );
